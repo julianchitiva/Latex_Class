@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{otros/stata, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Este es un ejemplo de un \textit{.tex} desde STATA}
+\author{Julián Enrique Chitiva}
+\begin{document}
+\maketitle
+\section{Esta es la primera sección}
+Aquí vamos a poner las estadísticas descriptivas
+\begin{center}
+\begin{stlog}\input{Clases/clase10/Stata/prueba_1.log.tex}\end{stlog}
+\end{center}
+\begin{enumerate}
+\item Este es un item de una lista
+\item Ahora vamos a hacer una regresión
+\begin{center}
+\begin{stlog}\input{Clases/clase10/Stata/prueba_2.log.tex}\end{stlog}
+\end{center}
+\item Ahora vamos a hacer otra regresión
+\begin{center}
+\begin{stlog}\input{Clases/clase10/Stata/prueba_3.log.tex}\end{stlog}
+\end{center}
+\end{enumerate}
+
+\begin{tabular}{lc} \hline
+ & (1) \\
+VARIABLES & price \\ \hline
+ &  \\
+mpg & -13.41 \\
+ & (72.11) \\
+longitud & -36.99*** \\
+ & (13.44) \\
+weight & 5.716*** \\
+ & (1.016) \\
+foreign & 3,550*** \\
+ & (655.5) \\
+Constant & 5,516 \\
+ & (5,242) \\
+ &  \\
+Observations & 74 \\
+ R-squared & 0.549 \\ \hline
+\multicolumn{2}{c}{ Standard errors in parentheses} \\
+\multicolumn{2}{c}{ *** p$<$0.01, ** p$<$0.05, * p$<$0.1} \\
+\end{tabular}
+
+\end{document}

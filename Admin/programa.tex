@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{multicol}
+
+%%%% Diseño de pagina
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{\baselineskip}
+\marginsize{1cm}{1cm}{0cm}{0.5cm} 
+\setlength{\parindent}{0pt}
+%\setlength{\columnseprule}{0.4pt}
+
+\pgfpagesdeclarelayout{boxed}
+{
+  \edef\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=1,%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {
+    border code=\pgfsetlinewidth{0.5pt}\pgfstroke,%
+    border shrink=\pgfpageoptionborder,%
+    resized width=.95\pgfphysicalwidth,%
+    resized height=.95\pgfphysicalheight,%
+    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  }%
+}
+
+%%%% Funciones
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+\newcommand{\plim}{\text{Plím }}
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\encabezado}{\vspace*{-2.5cm}
+\begin{multicols}{2}
+
+    \includegraphics[width=0.2\textwidth]{img/logo_econ.png}
+    
+\columnbreak
+
+\begin{flushright}
+\textbf{\large Taller de \LaTeX\ }\\
+\textbf{\large Julián Chitiva Bocanegra}\\
+\textbf{\small Propuesta}\\
+\end{flushright}
+
+\end{multicols}\vspace*{-1cm}
+\noindent\rule{\linewidth}{1pt}}
+
+
+\pgfpagesuselayout{boxed}
+
+
+\begin{document}
+\vspace*{0.8cm}
+\encabezado
+
+\begin{enumerate}[label={\bfseries\arabic*.}]
+    \item \textbf{Descripción del Curso}\\
+El curso Taller de \LaTeX\ busca que los estudiantes adquieran una comprensión general de lenguaje \TeX y su utilidad para la producción de documentación técnica y científica. \LaTeX\ es el estándar para la comunicación y publicación de documentos científicos. El énfasis será sobre las partes de un documento en \TeX, manejo de escritura matemática, tablas, gráficos y conexión con otros softwares como R y Stata, además de la exportación a otros formatos como Word.
+
+El curso busca que los estudiantes entiendan la estructura general de programación en \TeX y la apliquen a sus trabajos requeridos en otras clases. Al final se espera que los estudiantes se sientan cómodos utilizando \TeX para escribir documentos y hacer presentaciones.
+
+\item \textbf{Objetivos de la materia}
+
+\begin{itemize}
+    \item Familiarizar a los estudiantes en el lenguaje \TeX
+    \item Motivar el uso de \LaTeX\ a partir de la presentación de casos prácticos
+    \item Proporcionar herramientas para la escritura de documentos científicos
+    \item Enseñar a los estudiantes paquetes y comandos frecuentemente usados en \LaTeX
+    \item Enseñar a los estudiantes formas de automatizar tareas en \LaTeX
+    \item Proporcionar herramientas para que los estudiantes puedan continuar de manera autónoma su
+    aprendizaje de paquetes y aplicaciones de \LaTeX
+\end{itemize}
+
+\item \textbf{Competencias}\\
+Al final del curso, los estudiantes podrán:
+\begin{itemize}
+    \item Entender los archivos de ayuda sobre paquetes de \LaTeX
+    \item Escribir documentos y presentaciones
+    \item Manejar y diseñar de tablas
+    \item Importar y crear gráficos
+    \item Escribir funciones básicas
+    \item Importar datos de otros programas como R y Stata
+    \item Construcción de paquetes
+    \item Exportar/Importar a/de otros formatos como Word
+\end{itemize}
+
+\item \textbf{Metodología}\\
+
+El curso se realizará en salas habilitadas para el uso de computadores y estarán divididas en dos partes; durante la primera parte el profesor introducirá técnicas, comandos y conceptos relacionados con la utilización de \LaTeX\ y utilizará ejemplos que lo ilustren; durante la segunda parte los estudiantes deberán trabajar individualmente en un ejercicio, el cual deberán entregar al finalizar la clase.
+
+Durante el curso, los estudiantes podrán trabajar en la escritura de un documento del tema de su elección. 
+
+El curso tiene 14 módulos, los cuales buscan iniciar al estudiante en el uso de \TeX y presentar algunas aplicaciones básicas y avanzadas, que motiven su continuo aprendizaje y utilización de \LaTeX\ durante el curso y después de haberlo terminado.
+
+\item \textbf{Contenido y cronograma}\\
+
+\begin{enumerate}[start=1,label={\large\bfseries Módulo\ \arabic*:},leftmargin=2cm]
+    \item \textbf{Introducción a \LaTeX\ }
+    \begin{enumerate}[start=1,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item ¿Qué es \LaTeX\ ? ¿Por qué \LaTeX\ ?
+            \item Instalación de \LaTeX\  
+            \item Compiladores de \LaTeX\  \textit{off-line} y \textit{on-line}  (\href{www.overleaf.com}{overleaf}).
+            \item Tipos de \textit{documentclass} estándar.
+            \item Estructura básica de un documento en \LaTeX\ .
+        \end{itemize}
+    \end{enumerate}
+    \item Escritura matemática
+    \begin{enumerate}[start=2,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Símbolos matemáticos y letras griegas
+            \item Escritura de fórmulas y proposiciones
+            \item Ecuaciones de más de una linea
+            \item Alinear ecuaciones
+        \end{itemize}
+    \end{enumerate}
+    \item \textit{mini páginas} y Tablas
+    \begin{enumerate}[start=3,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Uso de minipages
+            \item Tabular
+            \item Table
+            \item Ajustar tablas al tamaño requerido.
+            \item Diseño de tablas booktabs, multirows, multicols
+        \end{itemize}
+    \end{enumerate}
+    \item Listas 
+    \begin{enumerate}[start=4,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Listas no numeradas
+            \item Listas numeradas
+            \item Cambiar diseño de listas (enumerate y enumitem).
+        \end{itemize}
+    \end{enumerate}
+    \item Diseño de página
+    \begin{enumerate}[start=5,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item múltiples columnas (multicolumn)
+            \item Espaciado horizontal (hspace)
+            \item Espaciado vertical (vspace)
+            \item Páginas horizontales
+            \item Numeración de páginas
+            \item Salto de página
+        \end{itemize}
+    \end{enumerate}
+    \item Gráficos e imágenes
+    \begin{enumerate}[start=6,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Insertar imagenes
+            \item Cambiar tamaño de imagenes
+            \item Paquetes subfigure y subcaption
+            \item Tikz
+            \begin{itemize}
+                \item Ecuaciones
+                \item Árboles
+                \item Redes
+            \end{itemize}
+            \item Colores
+            \item Gráficos con datos desde \LaTeX\ .
+        \end{itemize}
+    \end{enumerate}
+    \item Beamer
+    \begin{enumerate}[start=7,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Estructura básica
+            \item Formatos de presentación
+            \item Diseño de Encabezado y pie de página
+        \end{itemize}
+    \end{enumerate}
+    \item Diseño de exámenes y talleres 
+    \begin{enumerate}[start=8,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Paquete exam
+            \item Escritura de soluciones
+            \item Tablas de calificación
+            \item Preguntas bono
+            \item Preguntas tituladas
+        \end{itemize}
+    \end{enumerate}
+    \item Manejo de referencias y bibliografía
+     \begin{enumerate}[start=9,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Archivos bibtex
+            \item Natbib
+            \item Estilos de citación
+        \end{itemize}
+    \end{enumerate}
+    \item Conexión con otros softwares
+    \begin{enumerate}[start=10,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Stata 
+            \item R
+            \item Excel
+            \item (Pandoc) Word
+            \item (Pandoc) Html
+        \end{itemize}
+    \end{enumerate}
+    \item Manejo de inputs 
+    \begin{enumerate}[start=11,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Inputs desde \LaTeX
+            \item Inputs desde otros archivos
+        \end{itemize}
+    \end{enumerate}
+    \item Creación de paquetes
+    \begin{enumerate}[start=12,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Diseño
+            \item Programación de funciones
+            \item Publicación
+        \end{itemize}
+    \end{enumerate}
+    \item Journals de Economía
+    \begin{enumerate}[start=13,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item American Economic Association
+            \item Econometrica
+            \item The Quarterly Journal of Economics
+            \item Otros
+        \end{itemize}
+    \end{enumerate}
+    \item Loops en \LaTeX
+    \begin{enumerate}[start=14,label={\bfseries Semana\ \arabic*:},leftmargin=1cm,rightmargin=.1\linewidth]
+        \item
+        \begin{itemize}
+            \item Sobre el documento
+            \item Sobre gráficos
+        \end{itemize}
+    \end{enumerate}
+    
+    
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{anysize}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xfrac}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\renewcommand\spanishtablename{Tabla}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes, calc}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+
+\setlength{\columnseprule}{3pt}
+\setlength{\columnsep}{2.5cm}
+
+\pagenumbering{alph}
+\begin{document}
+\begin{landscape}
+\begin{minipage}{0.5\linewidth}
+\begin{eqnarray*}
+3+3\delta+ 3\delta^2+3\delta^3+\dots&\geq&7+2\delta+ 3\delta^2+3\delta^3+\dots\\
+3+3\delta&\geq&7+2\delta\\
+\delta&\geq&4>1\\
+\end{eqnarray*}
+\begin{center}
+\begin{tabular}{||c c c c||} 
+ \hline
+ Col1 & Col2 & Col2 & Col3 \\ [0.5ex] 
+ \hline\hline
+ 1 & 6 & 87837 & 787 \\ 
+ 2 & 7 & 78 & 5415 \\
+ 3 & 545 & 778 & 7507 \\
+ 4 & 545 & 18744 & 7560 \\
+ 5 & 88 & 788 & 6344 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{multicols}{2}
+Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. Este es un texto de prueba. 
+\end{multicols}
+\end{minipage}
+\end{landscape}
+
+\begin{multicols*}{2}
+
+$$\frac{\dot{K}(t)}{K(t)}=\begin{cases}\alpha -\frac{c(t)}{K(t)}& \text{si }K(t)\leq \overline{K}\\ \frac{\beta-c(t)}{K(t)} &\text{si } K(t)\leq \overline{K}\end{cases}$$
+
+\columnbreak
+
+$$\frac{\dot{c}(t)}{c(t)}=\begin{cases}\frac{1}{\varepsilon}(\phi\alpha -\rho)& \text{si }K(t)\leq \overline{K}\\ \frac{1}{\varepsilon}\left(\frac{\phi\beta}{K(t)}-\rho\right) &\text{si } K(t)\leq \overline{K}\end{cases}$$
+\vspace*{0.5cm}
+\end{multicols*}
+
+\newpage
+
+\begin{enumerate}[start=1,
+label={\bfseries Elemento \Alph*.},
+leftmargin=1cm]
+\item Esta es la entrada 1 de la lista.
+\item Esta es la entrada 2 de la lista.
+\item Esta es la entrada 3 de la lista.
+\item Esta es la entrada 4 de la lista.
+\item Esta es la entrada 5 de la lista.
+\item Esta es la entrada 6 de la lista.
+\item Esta es la entrada 7 de la lista.
+\item Esta es la entrada 8 de la lista.
+\item Esta es la entrada 9 de la lista.
+\item Esta es la entrada 10 de la lista.
+\end{enumerate}
+
+\vfill
+
+\hfill
+\begin{enumerate}[start=1,
+label={\bfseries \itshape  \Roman*.},
+leftmargin=1cm, rightmargin=1cm]
+  \item  \dotfill  Esta es la entrada 1 de la lista.
+  \item  \dotfill  Esta es la entrada 2 de la lista.
+  \item  \dotfill  Esta es la entrada 3 de la lista.
+  \item  \dotfill  Esta es la entrada 4 de la lista.
+  \item  \dotfill  Esta es la entrada 5 de la lista.
+  \item  \dotfill  Esta es la entrada 6 de la lista.
+  \item  \dotfill  Esta es la entrada 7 de la lista.
+  \item  \dotfill  Esta es la entrada 8 de la lista.
+  \item  \dotfill  Esta es la entrada 9 de la lista.
+  \item  \dotfill  Esta es la entrada 10 de la lista.
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

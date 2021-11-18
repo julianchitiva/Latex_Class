@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{multicol}
+
+%%%% Diseño de pagina
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{\baselineskip}
+\marginsize{1cm}{1cm}{0cm}{0.5cm} 
+\setlength{\parindent}{0pt}
+%\setlength{\columnseprule}{0.4pt}
+
+\pgfpagesdeclarelayout{boxed}
+{
+  \edef\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=1,%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {
+    border code=\pgfsetlinewidth{0.5pt}\pgfstroke,%
+    border shrink=\pgfpageoptionborder,%
+    resized width=.95\pgfphysicalwidth,%
+    resized height=.95\pgfphysicalheight,%
+    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  }%
+}
+
+%%%% Funciones
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+\newcommand{\plim}{\text{Plím }}
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\encabezado}{\vspace*{-2.5cm}
+\begin{minipage}{0.4\linewidth}
+\centering
+    \includegraphics[width=0.6\textwidth]{img/logo_econ.png}
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+\begin{center}
+\textbf{\large TALLER USOS DE \LaTeX\ }\\
+\textbf{\large ECON--1298 - Sección 1}\\
+\textbf{\large Julián Enrique Chitiva Bocanegra}\\
+\textbf{\href{mailto:je.chitiva10@uniandes.edu.co}{je.chitiva10@uniandes.edu.co}}\\
+\textbf{2019-2}\\
+\end{center}
+\end{minipage}
+}
+
+
+\pgfpagesuselayout{boxed}
+
+\begin{document}
+\vspace*{2cm}
+\encabezado
+
+
+\begin{enumerate}
+\item \textbf{Horario atención a estudiantes, correos electrónicos y nombres
+  de los profesores complementarios}\\~\\
+\textbf{\underline{Clase magistral}}
+
+Profesor: Julián Enrique Chitiva Bocanegra (\href{mailto:je.chitiva10@uniandes.edu.co}{je.chitiva10@uniandes.edu.co}) \\
+Horario de atención a estudiantes: Jueves 7:00 am - 8:00 am \\
+Lugar de atención a estudiantes: W-911.\\
+
+ \item \textbf{Introducción y descripción general del curso }
+ El curso Taller de \LaTeX\ busca que los estudiantes adquieran una comprensión general de lenguaje \TeX y su utilidad para la producción de documentación técnica y científica. \LaTeX\ es el estándar para la comunicación y publicación de documentos científicos. El énfasis será sobre las partes de un documento en \TeX, manejo de escritura matemática, tablas, gráficos y conexión con otros softwares como R y Stata, además de la exportación a otros formatos como Word.
+
+El curso busca que los estudiantes entiendan la estructura general de programación en \TeX y la apliquen a sus trabajos requeridos en otras clases. Al final se espera que los estudiantes se sientan cómodos utilizando \TeX para escribir documentos y hacer presentaciones.
+
+
+\item\textbf{Objetivos de la materia}
+
+\begin{itemize}
+    \item Familiarizarse con el lenguaje \TeX.
+    \item Motivar el uso de \LaTeX\ a partir de casos prácticos y aplicaciones.
+    \item Adquirir herramientas para la escritura de documentos científicos.
+    \item Dominio de paquetes y comandos frecuentemente usados en \LaTeX
+    \item Aprender formas de automatizar tareas en \LaTeX
+    \item Tener los conocimientos necesarios para que puedan continuar de manera autónoma su
+    aprendizaje de paquetes y aplicaciones de \LaTeX
+\end{itemize}
+
+\item \textbf{Organización del curso}
+
+\begin{multicols}{2}
+ \setlength{\columnseprule}{0.8pt} 
+\begin{enumerate}[start=1,label={\bfseries \arabic*.},leftmargin=1cm]
+    \item \textbf{Introducción a \LaTeX\ . }
+        \begin{itemize}
+            \item ¿Qué es \LaTeX\ ? ¿Por qué \LaTeX\ ?
+            \item Instalación de \LaTeX\  
+            \item Compiladores de \LaTeX\  \textit{off-line} y \textit{on-line}  (\href{www.overleaf.com}{overleaf}).
+            \item Tipos de \textit{documentclass} estándar.
+            \item Estructura básica de un documento en \LaTeX\ .
+        \end{itemize}
+    \item \textbf{Escritura matemática.}
+        \begin{itemize}
+            \item Símbolos matemáticos y letras griegas
+            \item Escritura de fórmulas y proposiciones
+            \item Ecuaciones de más de una linea
+            \item Alinear ecuaciones
+        \end{itemize}
+    \item \textbf{\textit{mini páginas} y Tablas.}
+        \begin{itemize}
+            \item Uso de minipages
+            \item Tabular
+            \item Table
+            \item Ajustar tablas al tamaño requerido.
+            \item Diseño de tablas booktabs, multirows, multicolumn
+        \end{itemize}
+    \item \textbf{Listas.} 
+        \begin{itemize}
+            \item Listas no numeradas
+            \item Listas numeradas
+            \item Cambiar diseño de listas (enumerate y enumitem).
+        \end{itemize}
+    \item \textbf{Diseño de página.}
+        \begin{itemize}
+            \item múltiples columnas (multicol)
+            \item Espaciado horizontal (hspace)
+            \item Espaciado vertical (vspace)
+            \item Páginas horizontales
+            \item Numeración de páginas
+            \item Salto de página
+        \end{itemize}
+    \item \textbf{Gráficos e imágenes.}
+        \begin{itemize}
+            \item Insertar imagenes
+            \item Cambiar tamaño de imagenes
+            \item Paquetes subfigure y subcaption
+            \item Tikz
+            \begin{itemize}
+                \item Ecuaciones
+                \item Árboles
+                \item Redes
+            \end{itemize}
+            \item Colores
+            \item Gráficos con datos desde \LaTeX\ .
+        \end{itemize}
+    \item \textbf{Beamer y presentaciones.}
+        \begin{itemize}
+            \item Estructura básica
+            \item Formatos de presentación
+            \item Diseño de Encabezado y pie de página
+        \end{itemize}
+    \item \textbf{Diseño de exámenes y talleres.}
+        \begin{itemize}
+            \item Paquete exam
+            \item Escritura de soluciones
+            \item Tablas de calificación
+            \item Preguntas bono
+            \item Preguntas tituladas
+        \end{itemize}
+    \item \textbf{Manejo de referencias y bibliografía.}
+        \begin{itemize}
+            \item Archivos bibtex
+            \item Natbib
+            \item Estilos de citación
+        \end{itemize}
+    \item \textbf{Conexión con otros softwares.}
+        \begin{itemize}
+            \item Stata 
+            \item R
+            \item Excel
+            \item (Pandoc) Word
+            \item (Pandoc) Html
+        \end{itemize}
+    \item \textbf{Manejo de inputs.}
+        \begin{itemize}
+            \item Inputs desde \LaTeX
+            \item Inputs desde otros archivos
+        \end{itemize}
+    \item \textbf{Creación de paquetes.}
+        \begin{itemize}
+            \item Diseño
+            \item Programación de funciones
+            \item Publicación
+        \end{itemize}
+    \item \textbf{Journals de Economía.}
+        \begin{itemize}
+            \item American Economic Association
+            \item Econometrica
+            \item The Quarterly Journal of Economics
+            \item Otros
+        \end{itemize}
+    \item \textbf{Loops en \LaTeX\ .}
+        \begin{itemize}
+            \item Sobre el documento
+            \item Sobre gráficos
+        \end{itemize}
+    
+\end{enumerate}
+\end{multicols}
+
+
+\item \textbf{Metodología}
+
+El curso se realizará en salas habilitadas para el uso de computadores y estarán divididas en dos partes; durante la primera parte el profesor introducirá técnicas, comandos y conceptos relacionados con la utilización de \LaTeX\ y utilizará ejemplos que lo ilustren. Durante la segunda parte los estudiantes deberán trabajar individualmente en un ejercicio, el cual deberán entregar al finalizar la clase.
+
+Durante el curso, los estudiantes podrán trabajar en la escritura de un documento del tema de su elección. 
+
+El curso tiene 14 módulos, los cuales buscan iniciar al estudiante en el uso de \TeX\ y presentar algunas aplicaciones básicas y avanzadas, que motiven su continuo aprendizaje y utilización de \LaTeX\ durante el curso y después de haberlo terminado.
+
+
+\item \textbf{Competencias }
+  
+  Al final del curso, los estudiantes podrán:
+\begin{itemize}
+    \item Entender los archivos de ayuda sobre paquetes de \LaTeX.
+    \item Escribir documentos y presentaciones.
+    \item Manejar y diseñar de tablas.
+    \item Importar y crear gráficos.
+    \item Escribir funciones básicas.
+    \item Importar datos de otros programas como R y Stata.
+    \item Construir paquetes.
+    \item Exportar/Importar a/de otros formatos como Word.
+\end{itemize}
+
+\item \textbf{Criterios de evaluación (Porcentajes de cada evaluación)}
+\begin{itemize}
+    \item Actividades de clase: $14*2.5\%=35\%$
+    
+    Todas las clases se evaluará los contenidos de la misma mediante una actividad corta. \\
+    
+    \item Talleres prácticos: $5\times 10\%=50\%$
+    
+    Se evaluará el contenidos acumulado de la clase mediante una actividad que contenga los elementos vistos hasta el momento. Las fechas de publicación y entrega de estas son:\\
+    
+    
+    \begin{tabular}{ccc}
+         Taller & Publicación & Entrega \\\hline
+         1 & 22/08  & 29/08\\
+         2 & 5/09 & 12/09\\
+         3 & 26/09 & 3/10\\
+         4 & 24/10 & 31/11\\
+         5 & 14/11 & 21/11\\
+    \end{tabular}
+    
+    \item Actividad final: $10\%$ (28/11)
+    
+    Se evaluará todo el contenido de la clase mediante una actividad. 
+    
+    \item Participación: $5\%$
+\end{itemize}
+
+Las actividades que se entreguen tarde o en un formato diferente al solicitado tendrán una penalidad de 1 sobre la nota definitiva. En caso de inasistencia, las actividades de clase no tendrán supletorio y la nota será el promedio entre la anterior y la siguiente. 
+
+Según los artículos 62 y 63 del \href{https://secretariageneral.uniandes.edu.co/images/documents/Reglamento_Pregrado_web_2017.pdf}{{Reglamento general de estudiantes de pregrado}}, el estudiante tendrá \textbf{cuatro} días hábiles después de la entrega de la evaluación calificada para presentar un reclamo. El profesor responderá al reclamo en los \textbf{cinco} días hábiles siguientes. Si el estudiante considera que la respuesta no concuerda con los criterios de evaluación podrá solicitar un segundo calificador al Consejo de la Facultad en los \textbf{cuatro} días hábiles posteriores a la recepción de la decisión del profesor.
+
+\item\textbf{Sistema de aproximación de notas definitiva}
+El sistema de notas definitivas es el siguiente: las notas totales con decimales en 0 o en .5 no se modificarán. Las notas totales con decimales entre .25 a .49 y entre .75 a .99, se aproximarán a la nota definitiva siguiente. Las notas con decimales entre .01 a .24 y entre .51 a .74, se aproximarán a la nota definitiva anterior. Para que la nota definitiva se aproxime del rango 2.75-2.99 a 3.00, el estudiante deberá pasar por lo menos el examen final o uno de los dos parciales. De lo contrario, la nota definitiva quedará en 2.5.
+
+\item \textbf{Fechas importantes}
+
+\begin{itemize}
+    \item Lunes 5 de agosto: inicio de clases.
+    \item Jueves 26 de septiembre: Día del estudiante (no hay clases en la tarde).
+    \item  Lunes 30 de septiembre a sábado 5 de octubre: semana de receso.
+    \item  Viernes 4 de octubre: límite para subir las notas del 30\% a Banner (6pm).
+    \item Viernes 11 de octubre: límite para que los estudiantes retiren materias.
+    \item Sábado 30 de noviembre: último día de clases.
+\end{itemize}
+
+%\item \textbf{Bibliografía}
+\nocite{*}
+
+\bibliographystyle{Admin/apalike-es}
+\bibliography{Admin/biblio}
+
+\end{enumerate}
+
+
+\end{document}

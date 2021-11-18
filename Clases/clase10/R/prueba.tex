@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Este es un ejemplo de un \textit{.tex} desde R}
+\author{Julián Enrique Chitiva}
+\usepackage{Sweave}
+\begin{document}
+\input{prueba-concordance}
+%\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
+\maketitle
+\begin{Schunk}
+\begin{Sinput}
+> a <- runif(10)
+> b <- runif(10)
+> c <- runif(10)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> A
+\end{Sinput}
+\begin{Soutput}
+            a         b           c
+1  0.26503615 7.4642879 0.124760338
+2  0.38948647 5.5982119 0.208244319
+3  0.29968063 9.9033837 0.277741877
+4  0.86104093 4.3856716 0.524603806
+5  0.01664021 0.5542976 0.027309600
+6  0.38869429 7.6576397 0.822847586
+7  0.45829609 1.8887346 0.003346628
+8  0.95960254 0.7099013 0.766477210
+9  0.97951982 6.1237918 0.277363667
+10 0.45780596 9.7214055 0.289730927
+\end{Soutput}
+\end{Schunk}
+
+
+\end{document}

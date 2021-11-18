@@ -1,0 +1,441 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\newcommand{\plim}{\text{Plím }}
+\newcommand{\sumi}{\sum_{i=1}^n}
+
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[teo]{Definición} % definition numbers are dependent on theorem numbers
+\newtheorem{ejem}[teo]{Ejemplo} 
+
+
+\usepackage{multicol}
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{\baselineskip}
+\marginsize{2cm}{2cm}{2.5cm}{2.5cm} 
+\setlength{\parindent}{0pt}
+
+\title{Preparación clase 1 de marzo de 2016}
+\author{Julián Enrique Chitiva Bocanegra}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{Large}
+Tema: Propiedades de los determinantes, Determinantes e Inversas, Espacios Vectoriales (Introducción, definición y propiedades básicas
+\end{Large}
+        \begin{enumerate}
+            \item Sean $A$ y $B$ dos matrices $n\times n$. Entonces $det\ AB=det\ A \ det \ B$
+            \item Sea $A$ una matriz $n\times n$ . Entonces $det\ A\prime=det \ A$
+            \item Sea \[A=\begin{pmatrix}a_{11}&a_{12}&\dots& a_{1n}\\ a_{21}& a_{22}& \dots &a_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\ a_{n1}& a_{n2}& \dots & a_{nn}\end{pmatrix}\]
+            una matriz de $n\times n$. Entonces $ det \ A=a_{i1}A_{i1}+a_{i2}A_{i2}+\dots+a_{in}A_{in}=\sum\limits_{k=1}^{n}a_{ik}A_{ik},$ para $i=1,2,\dots,n$. Es decir, se puede calcular $det \ A$ expandiendo por cofactores en cualquier renglón de $A$, también se puede calcular expandiendo por cofactores en cualquier columna de $A$.
+            \item Si cualquier renglón o columna de $A$ es el vector cero, entonces $det\ A=0$
+            \item Si el renglón (columna) $i$ de $A$ se multiplica por un escalar $c$, entonces $det\ A$ se multiplica por $c$ \[\begin{vmatrix}a_{11}&a_{12}&\dots & a_{1n}\\ a_{21}& a_{22}& \dots &a_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\ca_{i1}&ca_{i2}&\dots &ca_{in}\\\vdots & \vdots & \ddots & \vdots\\ a_{n1}& a_{n2}& \dots & a_{nn}\end{vmatrix}=c\begin{vmatrix}a_{11}&a_{12}&\dots & a_{1n}\\ a_{21}& a_{22}& \dots &a_{2n}\\ \vdots & \vdots & \ddots & \vdots\\
+            a_{i1}& a_{i2}&\dots &a_{in}\\\vdots & \vdots & \ddots & \vdots\\ a_{n1}& a_{n2}& \dots & a_{nn}\end{vmatrix}\]
+            \item Intercambiar cualesquiera dos renglones o columnas tiene el efecto de multiplicar el determinante por $-1$
+            \item Si A tiene dos renglones o columnas iguales, entonces $det\ A=0$
+            \item Si un renglón (columna) de $A$ es múltiplo escalar de otro renglón (columna) entonces $det\ A=0$
+            \item Si se suma un múltiplo escalar de un renglón (columna) de $A$ a otro renglón (columna) de $A$, entonces el determinante no cambia.
+            \item Si $A$ es invertible, entonces $det\ A\neq0$ y $det\ A^{-1}=\frac{1}{det\ A}$
+            \item Sea $A$ una matriz $n\times n$. Entonces $(A)(adj\ A)=\begin{pmatrix} det\ A & 0& \dots & 0\\0& det\ A& \dots &0 \\ \vdots & \dots & \ddots & \vdots\\ 0& 0 & \dots & det\ A\end{pmatrix}=(det\ A)I$
+            \item Sea $A$ una matriz de $n\times n$. Entonces $A$ es invertible si y solo si $det\ A\neq0$. Si $det\ A\neq0$, entonces $A^{-1}=\frac{1}{det\ A}adj\ A$
+        \end{enumerate}
+        
+        En los temas anteriores se aprendio cómo operar los objetos (vectores) de un espacio vectorial particular ``$\mathbb{R}^n$'', ahora generalizaremos estas operaciones a cualquier espacio vectorial; por ejemplo, el espacio de funciones, polinomios, matrices, etc. De esta manera, el segundo de los temas introduce el concepto de espacio vectorial real. Un espacio vectorial real V es un conjunto de objetos, llamados vectores, junto con dos operaciones llamadas suma y multiplicación por escalar que satisfacen los siguientes axiomas:
+        \begin{enumerate}
+            \item Si $x\in V$ y $y\in V$, entonces $x+y\in V$ (cerrado bajo la suma)
+            \item $\forall x,y,z \in V,\ (x+y)+z=x+(y+z)$ (ley asociativa de la suma de vectores)
+            \item $\exists 0 \in V$ tal que $\forall x\in V,\ x+0=0+x=x$ 
+            \item Si $x\in V, \ \exists -x \in V$ tal que $x+(-x)=0$ ($-x$ se llama el inverso aditivo)
+            \item Si $x,y\in V$, entonces $x+y=y+x$ (ley conmutativa de la suma de vectores)
+            \item Si $x\in V$ y $\alpha \in \mathbb{R}$, entonces $\alpha x\in V$ (cerrado bajo multiplicación por escalar)
+            \item Si $x,y\in V$ y $alpha \in \mathbb{R}$, entonces $\alpha(x+y)=\alpha x+\alpha y$ (primera ley distributiva)
+            \item Si $x\in V$ y $\alpha, \beta\in \mathbb{R}$, entonces $(\alpha+\beta)x=\alpha x+\beta x$ (segunda ley distributiva)
+            \item Si $x\in V$ y  $\alpha, \beta\in \mathbb{R}$, entonces $\alpha(\beta x)=(\alpha\beta)x$ (ley asociativa de la multiplicación por escalares)
+            \item $\forall x\in V,\ 1x=x$ 
+        \end{enumerate} 
+        
+        Estos dos temas sirven como base para la construccion de conjuntos de vectores linealmente independientes, bases de espacios vectoriales, etc. 
+        
+        
+\subsection{Desarrollo de los ejercicios Propuestos}
+\subsubsection{2.2 Propiedades de los determinantes}
+\begin{itemize}
+    \item 11. Evalúe el determinante usando los métodos de esta sección
+    \begin{eqnarray*}
+ \begin{vmatrix}
+  1 & 1 & -1 & 0\\
+  -3 & 4 & 6 & 0\\
+  2 & 5 & -1 & 3\\
+  4 & 0 & 3 & 0
+ \end{vmatrix}&=&
+ \begin{vmatrix}
+  1 & 1 & -1 & 0 \\
+  0 & 7 & 3 & 0 \\
+  0 & 3 & 1 & 3\\
+  0 & -4 & 7 & 0
+ \end{vmatrix} 
+ \begin{pmatrix}
+  R_2=R_2+3R_1 \\ 
+  R_3=R_3-2R_1 \\
+  R_4=R_4-4R_1
+ \end{pmatrix}\\
+ \end{eqnarray*}
+ \begin{eqnarray*}
+ \begin{vmatrix}
+  1 & 1 & -1 & 0\\
+  0 & 7 & 3 & 0\\
+  0 & 3 & 1 & 3\\
+  0 & -4 & 7 & 0
+ \end{vmatrix}
+ &=&
+ \begin{vmatrix}
+  1 & 1 & -1 & 0\\
+  0 & 3 & 10 & 0\\
+  0 & 3 & 1 & 3\\
+  0 & -1 & 8 & 3
+ \end{vmatrix}
+ \begin{pmatrix}
+  R_2=R_2+R_4 \\ 
+  R_4=R_4+R_3
+ \end{pmatrix}\\
+ &=&
+ \begin{vmatrix}
+  1 & 1 & -1 & 0\\
+  0 & 0 & 34 & 9\\
+  0 & 0 & 25 & 12\\
+  0 & -1 & 8 & 3
+ \end{vmatrix}
+ \begin{pmatrix}
+  R_2=R_2+3R_4 \\ 
+  R_4=R_4+3R_4
+ \end{pmatrix}\\
+ &=&(-1)^2
+ \begin{vmatrix}
+  1 & 1 & -1 & 0\\
+  0 & -1 & 8 & 3\\
+  0 & 0 & 40 & 9\\
+  0 & 0 & 34 & 12
+ \end{vmatrix}
+ \begin{pmatrix}
+  R_2\leftrightarrow R_4 \\ 
+  R_3\leftrightarrow R_4 
+ \end{pmatrix}\\
+ &=&1(-1)(34*12-25*9)\\
+ &=&-183
+    \end{eqnarray*}
+    \item 27. Evalúe el determinante suponiendo 
+    \[\begin{vmatrix}
+          a_{11} & a_{12} & a_{13}\\
+          a_{31} & a_{32} & a_{33}\\
+          a_{21} & a_{22} & a_{23}
+        \end{vmatrix}=8
+        \]
+        \begin{eqnarray*}
+        \begin{vmatrix}
+          2a_{11}-3a_{21} & 2a_{12}-3a_{22} & 2a_{13}-3a_{23}\\
+          a_{31} & a_{32} & a_{33}\\
+          a_{21} & a_{22} & a_{23}
+        \end{vmatrix}&=&
+        \begin{vmatrix}
+          2a_{11} & 2a_{12} & 2a_{13}\\
+          a_{31} & a_{32} & a_{33}\\
+          a_{21} & a_{22} & a_{23}
+        \end{vmatrix}
+        \begin{pmatrix}
+          R_1=R_1+3R_3 \\ 
+         \end{pmatrix}\\
+         &=& 2\begin{vmatrix}
+          a_{11} & a_{12} & a_{13}\\
+          a_{31} & a_{32} & a_{33}\\
+          a_{21} & a_{22} & a_{23}
+        \end{vmatrix}
+        \begin{pmatrix}
+          R_1=\frac{R_1}{2}\\ 
+         \end{pmatrix}\\
+          &=&(-1)*2\begin{vmatrix}
+          a_{11} & a_{12} & a_{13}\\
+          a_{21} & a_{22} & a_{23}\\
+          a_{31} & a_{32} & a_{33}
+        \end{vmatrix}
+        \begin{pmatrix}
+          R_2\leftrightarrow R_3\\ 
+         \end{pmatrix}\\
+         &=&-2*8=16
+        \end{eqnarray*}
+    \item 28. Usando la propiedad 2, demuestre que si $\alpha$ es un escalar y $A$ es una matriz $n\times n$, entonces $det(\alpha A)=\alpha^n det(A)$ 
+    
+    \begin{eqnarray*}
+    det(\alpha A)&=&
+        \begin{vmatrix}
+          \alpha a_{11} & \alpha a_{12} & \dots & \alpha a_{1n}\\
+          \alpha a_{21} & \alpha a_{22} & \dots &\alpha a_{2n}\\
+          \vdots & \vdots & \ddots & \vdots\\
+          \alpha a_{n1} & \alpha a_{n2} & \dots &\alpha a_{nn}
+        \end{vmatrix}
+        =\alpha\begin{vmatrix}
+           a_{11} &  a_{12} & \dots &  a_{1n}\\
+          \alpha a_{21} & \alpha a_{22} & \dots &\alpha a_{2n}\\
+          \vdots & \vdots & \ddots & \vdots\\
+          \alpha a_{n1} & \alpha a_{n2} & \dots &\alpha a_{nn}
+        \end{vmatrix}\\
+        &=&\alpha^2\begin{vmatrix}
+           a_{11} &  a_{12} & \dots & a_{1n}\\
+          a_{21} &  a_{22} & \dots & a_{2n}\\
+          \vdots & \vdots & \ddots & \vdots\\
+          \alpha a_{n1} & \alpha a_{n2} & \dots &\alpha a_{nn}
+          \end{vmatrix}=\dots
+          =\alpha^n\begin{vmatrix}
+           a_{11} &  a_{12} & \dots & a_{1n}\\
+          a_{21} &  a_{22} & \dots & a_{2n}\\
+          \vdots & \vdots & \ddots & \vdots\\
+           a_{n1} &  a_{n2} & \dots & a_{nn}
+          \end{vmatrix}\\
+          &=&\alpha^n det(A)
+        \end{eqnarray*}
+    
+    \item 29. Demuestre que \[\begin{vmatrix}
+          1+x_1 & x_2 & \dots & x_n\\
+          x_1 & 1+x_2 & \dots & x_n\\
+          \vdots & \vdots & \ddots & \vdots\\
+          x_1 &  x_2 & \dots & 1+x_n
+        \end{vmatrix}=1+x_1+x_2+\dots+x_n
+        \]
+        
+        Vamos a proceder por inducción en $n$. 
+        
+        Para n=2,\[\begin{vmatrix}
+          1+x_1 & x_2 \\
+          x_1 & 1+x_2 \\
+        \end{vmatrix}=(1+x_1)(1+x_2)-x_1x_2=1+x_1+x_2+x_1x_2-x_1x_2=1+x_1+x_2
+        \]
+
+        Suponga que se cumple para n-1, vamos a ver que también se cumple para n:
+        \begin{eqnarray*}
+        \begin{vmatrix}
+          1+x_1 & x_2 & \dots & x_n\\
+          x_1 & 1+x_2 & \dots & x_n\\
+          \vdots & \vdots & \ddots & \vdots\\
+          x_1 &  x_2 & \dots & 1+x_n
+        \end{vmatrix}&=&\begin{vmatrix}
+          1 & -1 & \dots & 0\\
+          x_1 & 1+x_2 & \dots & x_n\\
+          \vdots & \vdots & \ddots & \vdots\\
+          x_1 &  x_2 & \dots & 1+x_n
+        \end{vmatrix} \begin{pmatrix}
+          R_1=R_1-R_2\\ 
+         \end{pmatrix}\\
+        &=&\begin{vmatrix}
+          1 & 0 & \dots & 0\\
+          x_1 & 1+x_2+x_1 & \dots & x_n\\
+          \vdots & \vdots & \ddots & \vdots\\
+          x_1 &  x_2+x_1 & \dots & 1+x_n
+        \end{vmatrix} \begin{pmatrix}
+          C_2=C_2+C_1\\ 
+         \end{pmatrix}\\
+         &=&1*\begin{vmatrix}
+        1+x_2+x_1 & \dots & x_n\\
+          \vdots & \ddots & \vdots\\
+           x_2+x_1 & \dots & 1+x_n
+        \end{vmatrix}\\
+        &=& 1+x_1+x_2+\dots+x_n \ (\text{ hipótesis de inducción})
+        \end{eqnarray*}
+    \item 32. Una matriz $A$ se llama \textbf{ortogonal} si $A$ es invertible y $A^{-1}=A^t$. Demuestre que si $A$ es ortogonal, entonces $det \ A=\pm 1$
+    
+    Sabemos que $det\ A= det \ A^t= det \ A^{-1}$. Ademas, 
+    \begin{eqnarray*}
+    det \ AA^{-1}&=&det \ I=1\\
+    det\ A * det \ A^{-1}&=&1\\
+    (det\ A)^2&=&1\\
+    det\ A&=&\pm1
+    \end{eqnarray*}
+    
+    \item 36. \[D_4=\begin{vmatrix}
+    1&1&1&1\\
+    a_1& a_2 & a_3 &a_4\\
+    a_1^2& a_2^2 & a_3^2 &a_4^2\\
+    a_1^3& a_2^3 & a_3^3 &a_4^3
+    \end{vmatrix}
+    \] es el determinante de Vandermode de $4\times 4$
+    
+    Demuestre que $D_4=(a_2-a_1)(a_3-a_1)(a_4-a_1)(a_3-a_2)(a_4-a_2)(a_4-a_3)$
+    
+    \begin{eqnarray*}
+    D_4&=&\begin{vmatrix}
+    1&1&1&1\\
+    a_1& a_2 & a_3 &a_4\\
+    a_1^2& a_2^2 & a_3^2 &a_4^2\\
+    a_1^3& a_2^3 & a_3^3 &a_4^3
+    \end{vmatrix}=\begin{vmatrix}
+    1&1&1&1\\
+    0& a_2-a_1 & a_3-a_1 &a_4-a_1\\
+    0& a_2^2-a_1a_2 & a_3^2-a_1a_3 &a_4^2-a_1a_4\\
+    0& a_2^3 -a_1a_2^2& a_3^3-a_1a_3^2 &a_4^3-a_1a_4^2
+    \end{vmatrix}\\
+    &=&(a_2-a_1)(a_3-a_1)(a_4-a_1)\begin{vmatrix}
+    1&1&1\\
+     a_2 & a_3 &a_4\\
+     a_2^2 & a_3^2 &a_4^2\\
+    \end{vmatrix}\\
+    &=&(a_2-a_1)(a_3-a_1)(a_4-a_1)\begin{vmatrix}
+    1&1&1\\
+     0& a_3-a_2 &a_4-a_2\\
+     0& a_3^2-a_2a_3 &a_4^2-a_2a_4\\
+    \end{vmatrix}\\
+    &=&(a_2-a_1)(a_3-a_1)(a_4-a_1)(a_3-a_2)(a_4-a_2)\begin{vmatrix}
+    1&1\\
+     a_3 &a_4\\
+    \end{vmatrix}\\
+    &=&(a_2-a_1)(a_3-a_1)(a_4-a_1)(a_3-a_2)(a_4-a_2)(a_4-a_3)
+    \end{eqnarray*}
+    
+    \item 38. Sea $A=\begin{pmatrix}a_{11}& a_{12}\\ a_{21} & a_{22}\end{pmatrix}$ y $B=\begin{pmatrix}b_{11}& b_{12}\\ b_{21} & b_{22}\end{pmatrix}$
+    \begin{enumerate}
+        \item Escriba el producto $AB$
+        \begin{eqnarray*}
+        AB&=&\begin{pmatrix}a_{11}& a_{12}\\ a_{21} & a_{22}\end{pmatrix}
+        \begin{pmatrix}b_{11}& b_{12}\\ b_{21} & b_{22}\end{pmatrix}\\
+        &=&
+        \begin{pmatrix}a_{11}b_{11}+a_{12}b_{21} & a_{11}b_{12}+a_{12}b_{22}\\
+        a_{21}b_{11}+a_{22}b_{21}&a_{21}b_{12}+a_{22}b_{22}\end{pmatrix}
+        \end{eqnarray*}
+        
+        \item Calcule $det\ A, \ det \ B$ y $det\ AB$
+        \begin{eqnarray*}
+        det\ A&=&\begin{vmatrix}a_{11}& a_{12}\\ a_{21} & a_{22}\end{vmatrix}\\
+        &=&a_{11}a_{22}-a_{12}a_{21}
+        \end{eqnarray*}
+        \begin{eqnarray*}
+        det\ B&=&\begin{vmatrix}b_{11}& b_{12}\\ b_{21} & b_{22}\end{vmatrix}\\
+        &=&b_{11}b_{22}-b_{12}b_{21}
+        \end{eqnarray*}
+        
+        \begin{eqnarray*}
+        det\ AB&=&\begin{vmatrix}a_{11}b_{11}+a_{12}b_{21} & a_{11}b_{12}+a_{12}b_{22}\\
+        a_{21}b_{11}+a_{22}b_{21}&a_{21}b_{12}+a_{22}b_{22}\end{vmatrix}\\
+        &=&(a_{11}b_{11}+a_{12}b_{21})(a_{21}b_{12}+a_{22}b_{22})-(a_{11}b_{12}+a_{12}b_{22})(a_{21}b_{11}+a_{22}b_{21})\\
+        &=&a_{11}a_{22}b_{11}b_{22}-a_{11}a_{22}b_{12}b_{21}+a_{12}a_{21}b_{12}b_{21}-a_{12}a_{21}b_{11}b_{22}\\
+        &=&a_{11}a_{22}(b_{11}b_{22}-b_{12}b_{21})-a_{12}a_{21}(b_{11}b_{22}-b_{12}b_{21})\\
+        &=&(a_{11}a_{22}-a_{12}a_{21})(b_{11}b_{22}-b_{12}b_{21})
+        \end{eqnarray*}
+    \end{enumerate}
+    \item 41.  La matriz $A$ se llama \textbf{idempotente} si$A^2=A$. \textquestiondown Cuáles son los posibles valores para $det\ A$ si $A$ es idempotente?
+    
+    \begin{eqnarray*}
+    det\ A^2&=&det\ A\\
+    (det\ A)^2&=&det\ A\\
+    det\ A=1
+    \end{eqnarray*}
+    
+\end{itemize}
+
+\subsubsection{2.4 Determinantes e Inversas}
+\begin{itemize}
+    \item 9. Utilice los métodos de esta sección para determinar si la matriz es invertible. si lo es, calcule la inversa
+    \[\begin{pmatrix}2&-1&4\\-1&0&5\\19&-7&3\end{pmatrix}\]
+    \begin{eqnarray*}
+    \begin{vmatrix}2&-1&4\\-1&0&5\\19&-7&3\end{vmatrix}&=&2(35)+(-3-95)+4(7)\\
+    &=&70-98+28\\
+    &=&0\Rightarrow \text{ La matriz no es invertible}
+    \end{eqnarray*}
+    
+    
+    \item 13. Use determinates para demostrar que una matriz $A$ de $n\times n$ es invertible si y solo si $A^t$ es invertible.
+    Como $det\ A= det\ A^t$. Suponga que $A$ es invertible $\Rightarrow det\ A\neq 0 \Rightarrow det\ A^t\neq 0 $. Ahora, suponga que $A^t$ es invertible  $\Rightarrow det\ A^t\neq 0 \Rightarrow det\ A\neq 0 $
+    \item 14. Para $A=\begin{pmatrix}1 &1\\2&5\end{pmatrix}$, verifique que $det\ A^{-1}=\frac{1}{det\ A}$
+    $det\ A=5-2=3$. Calculamos $A^{-1}$ por el método de la matriz adjunta, entonces, $A^{-1}=\frac{1}{3}\begin{pmatrix}5 &-1\\-2&1\end{pmatrix}$ y ahora, calculamos $det\ A^{-1}=\frac{5}{9}-\frac{2}{9}=\frac{3}{9}=\frac{1}{3}$
+    \item[16.] \textquestiondown Para qué valores de $\alpha$ la matriz $\begin{pmatrix}\alpha&-3\\4&1-\alpha\end{pmatrix}$ es no invertible?
+    
+    $\begin{vmatrix}\alpha&-3\\4&1-\alpha\end{vmatrix}=\alpha(1-\alpha)+12$. Para que sea no invertible, su determinante tiene que ser cero. Entonces, 
+    \begin{eqnarray*}
+    \alpha(1-\alpha)+12&=&0\\
+    \alpha^2-\alpha-12&=&0\ \Rightarrow \\
+    \alpha&=&\frac{1\pm\sqrt{1+48}}{2}\\
+    \alpha&=&\frac{1\pm7}{2}\\
+    && \vdots\\
+    \alpha_1&=&4\\
+    \alpha_2&=&-3\\
+    \end{eqnarray*}
+    
+    
+    \item 19. Sea $\theta\in\mathbb{R}$. Demuestre que $\begin{pmatrix}\cos\theta&\sin\theta\\-\sin\theta& \cos\theta\end{pmatrix}$ es invertible y encuentre su inversa.
+    
+     $$\begin{vmatrix}\cos\theta&\sin\theta\\-\sin\theta& \cos\theta\end{vmatrix}=\cos^2\theta+\sin^2\theta=1\neq0$$
+     
+     Calculamos la inversa por el método de la adjunta:
+     
+     $$\begin{pmatrix}\cos\theta&\sin\theta\\-\sin\theta& \cos\theta\end{pmatrix}^{-1}=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta& \cos\theta\end{pmatrix}$$
+    
+    
+\end{itemize}
+
+\subsubsection{4.2 Espacios vectoriales (Introducción, definición y propiedades básicas)}
+\begin{itemize}
+    \item 3.$V=\{(x,y); y\leq0;\ x,y\in \mathbb{R}\}$ con la suma de vectores y la multiplicación por escalar usuales.
+    
+    No. Note que para $(x,y)\in V,$  $y<0\ \Rightarrow (-x,-y)\notin V,$ porque $-y>0$
+    
+    \item 4. Los vectores en el plano que están en el primer cuadrante.
+    
+    No. Por un argumento similiar al anterior si $(x,y)$ está en el primer cuadrante, entonces, $(-x,-y)$ está en el tercer cuadrante y no pertenece.
+    
+    \item 7. El conjunto de las matrices simétricas $n\times n$ bajo la suma y la multiplicación por escalar usuales.
+    
+    Sí. Sean $A,B$ matrices simétricas y $\alpha \in \mathbb{R}$. Es decir, $A\prime=A$ y $B\prime=B$. Note que $(A+\alpha B)\prime=A\prime+(\alpha B\prime)=A+\alpha B$, lo cual implica que es cerrado bajo la suma y la multiplicación por escalar. Los demás axiomas los cumple trivialmente. 
+    
+    \item 8. El conjunto de matrices $2\times2$ de la forma $\begin{pmatrix}0&a\\b&0\end{pmatrix}$ bajo la suma y multiplicación por un escalar usuales.
+    
+    $$\begin{pmatrix}0&a\\b&0\end{pmatrix}+\begin{pmatrix}0&c\\c&0\end{pmatrix}=\begin{pmatrix}0&a+c\\b+c&0\end{pmatrix}\in V$$
+    
+    $$\begin{pmatrix}0&0\\0&0\end{pmatrix}\in V$$  
+    
+    $$\alpha\begin{pmatrix}0&a\\b&0\end{pmatrix}=\begin{pmatrix}0&\alpha a\\\alpha b&0\end{pmatrix}\in V$$
+    
+    El resto de axiomas los cumple trivialmente.
+    
+    \item 9. El conjunto de matrices $2\times2$ de la forma $\begin{pmatrix}1&a\\b&1\end{pmatrix}$ bajo la suma y multiplicación por un escalar usuales.
+    
+    $$\begin{pmatrix}1&a\\b&1\end{pmatrix}+\begin{pmatrix}1&c\\c&1\end{pmatrix}=\begin{pmatrix}2&a+c\\b+c&2\end{pmatrix}\notin V$$ 
+    
+    \item 11. El conjunto de polinomios de grado $\leq n$ con término constante 0.
+    
+    Sí. Note que la suma de dos polinomios con término constante 0 va a tener su término constante 0. $0\in V$. $p(x)\in V\Rightarrow -p(x)\in V,$ porque $-0=0$. $\alpha p(x)\in V,$ porque $\alpha*0=0$. El resto de axiomas los cumple trivialmente.
+    
+    \item 14. El conjunto de puntos en $\mathbb{R}^3$ que están sobre la recta que pasa por el origen
+    
+    Sí. $t_1(a,b,c)+t_2(a,b,c)=(t_1+t_2)(a,b,c)\in V$. $(0,0,0)\in V$. Si $(a,b,c)=t(d,e,f)\in V\Rightarrow (-a,-b,-c)=(-t)(d,e,f)\in V$. $\alpha(t(a,b,c))=(\alpha t)(a,b,c)\forall \alpha \in\mathbb{R} $. Los demás axiomas se cumplen trivialmente.
+        
+\end{itemize}
+
+\end{document}

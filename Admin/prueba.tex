@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{xfrac}
+\usepackage{lipsum}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage[inline]{enumitem}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes, calc}
+\usetikzlibrary{positioning}
+\usepackage{cancel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+
+%%%% Diseño de pagina
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{\baselineskip}
+\marginsize{1cm}{1cm}{0cm}{0.5cm} 
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\foreach \y in {4,5,...,8}{
+\foreach \x in {1,2,...,\y}{
+\begin{itemize*}
+    \item \x
+\end{itemize*}}\\}
+
+\begin{figure}[!ht]
+\centering
+\foreach \x in {1,2,...,7}{
+\begin{subfigure}{0.45\linewidth}
+    \centering
+\includegraphics[width=0.7\linewidth]{animals/animal\x} 
+    \caption{Esta es la imagen \x.}
+    \label{fig:my_label\x}
+\end{subfigure}
+    }
+\end{figure}
+
+
+\foreach \x in {hola, perro, casa}{
+    \x \\}
+
+\colorbox{pink}{hola}
+\sethlcolor{pink}\hl{hola}
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{anysize}
+\usepackage{xfrac}
+\renewcommand\spanishtablename{Tablita}
+\begin{document}
+
+
+
+\begin{table}[h!]
+    \centering
+    \caption{Esta es la Tablita \ref{tab:1} del Documento}
+    \begin{tabular}{c *{3}{c} c *{3}{c} c *{3}{c}}\cmidrule[1pt]{2-4}\cmidrule[1pt]{6-8}\cmidrule[1pt]{10-12}
+          \multicolumn{1}{c}{3} & \multicolumn{3}{c}{M}&\multirow{4}{*}{}& \multicolumn{3}{c}{N} &\multirow{4}{*}{}& \multicolumn{3}{c}{Q}\\\cmidrule{2-4}\cmidrule{6-8}\cmidrule{10-12}
+          & 1\textbackslash 2 & A & B && 1\textbackslash 2 & A & B && 1\textbackslash 2 & A & B \\\cmidrule{2-4}\cmidrule{6-8}\cmidrule{10-12}
+          & X & 0,0,3 & 0,0,0 & & X & 2,2,2 & 0,0,0 & &X & 0,0,0 & 1,1,1 \\  
+          & Y & 1,1,1 & 0,0,0 & & Y & 0,0,0 & 2,2,2 & & Y & 0,0,0 & 0,0,3 \\ \cmidrule[1pt]{2-4}\cmidrule[1pt]{6-8}\cmidrule[1pt]{10-12} 
+    \end{tabular} 
+    \label{tab:1}
+\end{table}
+ 
+ \begin{minipage}{0.4\linewidth}
+ En el lado derecho de la página encontrán una ecuación numerada. En este caso es la ecuacion \ref{eq:1}
+ \end{minipage}
+ \begin{minipage}{0.6\linewidth}
+ \begin{equation}
+ \gamma = \begin{cases} (X,A,N) & \text{con probabilidad }\sfrac{1}{2} \\
+ (Y,B,N) & \text{con probabilidad }\frac{1}{2} \\
+ \text{Los demás} & \text{con probabilidad } 0 \\ \end{cases}
+ \label{eq:1}
+ \end{equation}
+ \end{minipage}
+ 
+ \begin{table}[h!]
+ \centering
+     \begin{tabular}{|c|c|c|c|}\hline
+      1\textbackslash 2 & A & B & C \\ \hline
+      A & $2+2\delta,2+2\delta$ & $0+2\delta,0+2\delta$ & $6+2\delta,1+2\delta$ \\ \hline
+      B & $0+2\delta,0+2\delta$ & $4+2\delta,4+2\delta$ & $0+2\delta,0+2\delta$ \\ \hline
+      C & $1+2\delta,6+2\delta$ & $0+2\delta,0+2\delta$ & $5+4\delta,5+4\delta$ \\ \hline
+    \end{tabular}
+     \caption{Esta es una Tablita que contiene símbolos matemáticos}
+     \label{tab:2}
+ \end{table}
+ 
+ 
+ \begin{minipage}{0.3\linewidth}
+ \begin{align}
+    5+4\delta&\geq 6+2\delta \label{eq:2}\\
+    2\delta&\geq 1\nonumber\\
+    \delta&\geq \frac{1}{2} \label{eq:3}
+\end{align}
+ \end{minipage}
+ \begin{minipage}{0.2\linewidth}
+\hfill
+ \end{minipage}
+ \begin{minipage}{0.5\linewidth}
+ La solución anterior implica que el primer paso es la ecuación \ref{eq:2} y el último paso es la ecuación \ref{eq:3}.
+ \end{minipage}
+ 
+ 
+ \listoftables
+ \end{document}

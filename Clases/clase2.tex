@@ -1,0 +1,544 @@
+\documentclass[dvipsnames,xcolor, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\PassOptionsToPackage{demo}{graphicx}
+
+\usepackage{array}
+
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+ \usetheme{Boadilla}
+
+%\usecolortheme{crane}
+\definecolor{colorClase}{rgb}{0.576,0.302, 0.067}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor \hspace*{1em}(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+  
+\title{Taller usos de \LaTeX \\ \small{Escritura matemática} \vspace*{-0.2cm}}
+
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+
+\subject{}
+\usepackage[figurename=]{caption}
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenido.}
+  \tableofcontents%[hideallsubsections]%, currentsection]
+\end{frame}
+
+\section{Estructura básica.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Ambiente matemático.}
+    Para escribir funciones matemáticas es necesario importar los siguientes paquetes:
+    \begin{itemize}
+        \item \verb!amsmath!
+        \item \verb!amssymb!
+        \item \verb!amsfonts!
+        \item \verb!mathrsfs!
+    \end{itemize}
+\end{frame}
+\begin{frame}{Ambiente matemático.}
+ \LaTeX es famoso por su calidad tipográfica a la hora de escribir formulas matemáticas. \\~\\
+ 
+ Dependiendo de lo que necesite escribir, hay varias formas de insertar ecuaciones:
+ \begin{itemize}
+     \item Dentro de una línea.
+     \item Con un salto de línea.
+     \item Con un salto de línea y la ecuación numerada.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones dentro de una línea.}
+    La forma de escribir ecuaciones dentro de una linea es escribiéndola entre signos peso: \verb! $ formula $! 
+    
+    \begin{ejemplo}
+    Esta es una ecuación \verb!$a+b$! (Código)
+    
+    Esta es una ecuación $a+b$ (Resultado)
+    
+    \end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones con un salto de línea.}
+    La forma de escribir ecuaciones centradas con un salto de linea es escribiéndola entre doble signos peso: \verb! $$ formula $$! 
+    
+    \begin{ejemplo}
+    Esta es una ecuación \verb!$$a+b$$! (Código)
+    
+    Esta es una ecuación $$a+b$$ (Resultado)
+    
+    \end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones con un salto de línea numeradas.}
+    La forma de escribir ecuaciones centradas con un salto de linea y que \LaTeX\ las numere automáticamente es escribiéndola dentro del ambiente \verb!equation!:
+    \begin{verbatim}
+    \begin{equation}
+        formula
+        \label{eq:etiqueta formula}
+    \end{equation}  
+    \end{verbatim}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones con un salto de línea numeradas.}
+
+    \begin{ejemplo}
+    \begin{multicols}{2}
+    \setlength{\columnseprule}{0.8pt} 
+    (Código) 
+    \begin{verbatim}
+    Esta es una ecuación
+    \begin{equation}
+        a+b
+        \label{eq:ejemplo}
+    \end{equation} 
+    Esta es otra ecuación
+    \begin{equation*}
+        c+d
+    \end{equation*} 
+    \end{verbatim}
+    \columnbreak
+    
+     (Resultado) \\
+     Esta es una ecuación 
+     \begin{equation}
+        a+b
+        \label{eq:ejemplo}
+    \end{equation}  
+    \vspace{0.5cm} Esta es otra ecuación
+    \vspace*{-0.4cm}\begin{equation*}
+        c+d
+    \end{equation*} 
+    \end{multicols}
+    \end{ejemplo}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones con un salto de línea numeradas: referencias.}
+
+Estas etiquetas son muy útiles para hacer referencias dentro del texto. 
+
+    \begin{ejemplo}
+    (Código) 
+    \begin{verbatim}
+    Este es un ejemplo de cómo referenciar
+    la ecuación \ref{eq:ejemplo}.
+    \end{verbatim}
+    
+     (Resultado)\\
+     Este es un ejemplo de cómo referenciar
+     la ecuación \ref{eq:ejemplo}.  
+    \end{ejemplo}
+    
+    
+\end{frame}
+
+\section{Funciones básicas: Símbolos matemáticos y letras griegas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Reglas básicas.}
+\begin{itemize}
+    \item Los números y letras latinas se escriben normalmente.
+    \begin{itemize}
+        \item \verb! $f(x) = 5a+b$!
+        \item $f(x) = 5a+b$
+    \end{itemize}\pause
+    \item Superíndices:
+    \begin{itemize}
+        \item \verb! $a^1, a^1+b, a^{1+b}$!
+        \item  $a^1, a^1+b, a^{1+b}$
+    \end{itemize}\pause
+    \item Subíndices:
+    \begin{itemize}
+        \item \verb! $a_1, a_1+b, a_{1+b}$!
+        \item  $a_1, a_1+b, a_{1+b}$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Funciones.}
+\begin{itemize}
+    \item Fracciones
+    \begin{itemize}
+        \item \verb!$\frac{a}{b}=c$!
+        \item $\frac{a}{b}=c$
+    \end{itemize}\pause
+    \item Raíces
+    \begin{itemize}
+        \item \verb!$\sqrt{3}$!: $\sqrt{3}$
+        \item \verb!$\sqrt[4]{3+x^2}$!: $\sqrt[4]{3+x^2}$
+    \end{itemize}\pause
+    \item El símbolo de multiplicación se escribe \verb!\times!
+    \begin{itemize}
+        \item \verb!$a\times b$!: $a\times b$
+    \end{itemize}\pause
+    \item Funciones comunes en matemáticas se pone un backslash antes del nombre
+    \begin{itemize}
+        \item \verb!$\sin x, \cosh a, \ln_2 a, \log 1$!
+        \item $\sin x, \tanh a, \ln_2 a, \log 1$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operadores.}
+\begin{itemize}
+\item La mayoría de operadores también están definidos como las funciones
+    \begin{itemize}
+        \item \verb!$\sum_{i=1}^{10} a_i$!: $\sum_{i=1}^{10} a_i$
+        \item \verb!$\prod_{i=1}^{\infty} a_i$!: $\prod_{i=1}^{\infty} a_i$
+        \item \verb!$\int_a^b x \mathrm{d}x$!: $\int_a^b x\mathrm{d}x$
+        \item \verb!$\partial x$!: $\partial x$
+    \end{itemize}\pause
+    \item A veces es importante usar \verb!\limits! para los limites de los operadores
+    \begin{itemize}
+        \item \verb!$\sum_{i=1}^{10} a_i $!: $\sum_{i=1}^{10} a_i $
+        \verb!$\sum\limits_{i=1}^{10} a_i$!: $\sum\limits_{i=1}^{10} a_i$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Paréntesis y corchetes.}
+\begin{itemize}
+    \item Los paréntesis y corchetes se ingresan normalmente
+    \begin{itemize}
+        \item \verb!$y=2(x+b)$!: $y=2(x+b)$
+        \item \verb!$$y=2[\frac{x}{b}]$$!: $$y=2[\frac{x}{b}]$$
+    \end{itemize}\pause
+    El problema es que no se ajustan al contenido\pause
+    \item Para ajustar los paréntesis y corchetes toca definirlos así:
+    \begin{itemize}
+        \item \verb!$$y=2\left[\frac{x}{b}\right]$$!: $$y=2\left[\frac{x}{b}\right]$$
+    \item Siempre tengo que abrir con \verb!\left! y cerrar con \verb!\right!
+    \item Puedo combinar como quiera los paréntesis: \verb!. ( ) [ ]!
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Letras griegas y texto.}
+\begin{itemize}
+    \item Las letras griegas se escriben poniendo backslash antes del nombre
+    \begin{itemize}
+        \item \verb!$\alpha, \beta, \gamma$!: $\alpha, \beta, \gamma$
+    \end{itemize}\pause
+    \item Cuando están en mayúscula siguen la misma estructura anterior, poniendo backslash antes del nombre
+    \begin{itemize}
+        \item \verb!$\Psi, \Xi, \Gamma$!: $\Psi, \Xi, \Gamma$
+    \end{itemize}\pause
+    
+    \item Para escribir texto dentro de una ecuación hay que escribirlo dentro del ambiente \verb!\text!, de lo contrario \LaTeX\ considerará las letras como variables.
+    \begin{itemize}
+        \item \verb!$A_{inicial}$!: $A_{inicial}$
+        \item \verb!$A_{\text{inicial}}$!: $A_{\text{inicial}}$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Conjuntos.}
+\begin{itemize}
+    \item Como las llaves hacen parte de la estructura básica de \LaTeX, los conjuntos se deben escribir de la siguiente manera:
+    \begin{itemize}
+        \item \verb!$$A=\{1,2,3,4,5\}$$!: $$A=\{1,2,3,4,5\}$$
+    \end{itemize}\pause
+    \item También podemos poner puntos suspensivos
+    \begin{itemize}
+        \item \verb!$$A=\{1,2,\dots,10\}$$!: $$A=\{1,2,\dots,10\}$$
+    \end{itemize}
+    Ver \verb!\cdots, \vdots, \ddots!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Vectores y matrices.}
+    \begin{itemize}
+        \item La estructura básica de una matriz es:
+        \begin{itemize}
+            \item \verb!$$\begin{matrix}a & b \\ c & d \end{matrix}$$!: $$\begin{matrix}a & b \\ c & d \end{matrix}$$
+        \end{itemize}
+        
+       
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Vectores y matrices.}
+    \begin{itemize}
+        \item Vemos que el ambiente \verb!matrix! no pone nada alrededor de la matriz. Si queremos algún paréntesis usamos los siguientes ambientes:
+        \begin{itemize}
+            \item \verb!pmatrix!: Paréntesis $\begin{pmatrix}a & b \\ c & d \end{pmatrix}$\pause
+            \item \verb!bmatrix!: Corchetes $\begin{bmatrix}a & b \\ c & d \end{bmatrix}$\pause
+            \item \verb!Bmatrix!: Llaves $\begin{Bmatrix}a & b \\ c & d \end{Bmatrix}$\pause
+            \item \verb!vmatrix!: $\begin{vmatrix}a & b \\ c & d \end{vmatrix}$\pause
+            \item \verb!Vmatrix!: $\begin{Vmatrix}a & b \\ c & d \end{Vmatrix}$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Acentos.}
+    \begin{itemize}
+        \item \LaTeX\ permite acentos en el ambiente matemático
+        \begin{itemize}
+            \item Prima: \verb!$a^\prime$!: $a^\prime$\pause
+            \item Gorro: \verb!$\hat{a}$!: $\hat{a}$
+            \item Gorro ancho: \verb!$\widehat{aaa}$!: $\widehat{aaa}$\pause
+            \item Punto: \verb!$\dot{a}$!: $\dot{a}$\pause
+            \item Barra: \verb!$\bar{a}$!: $\bar{a}$
+            \item Barra ancha: \verb!$\overline{aaa}$!: $\overline{aaa}$
+            \item Subrayar:  \verb!$\underline{aaa}$!: $\underline{aaa}$\pause
+            \item Tilde: \verb!$\tilde{a}$!: $\tilde{a}$
+            \item Tilde ancha: \verb!$\widetilde{aaa}$!: $\widetilde{aaa}$\pause
+            \item Flechas:
+            \verb!$\vec{aaa}$!: $\vec{aaa}$\\
+            \hspace{1.3cm}\verb!$\overrightarrow{aaa}$!: $\overrightarrow{aaa}$\\
+            \hspace{1.3cm}\verb!$\overleftarrow{aaa}$!: $\overleftarrow{aaa}$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fuentes matemáticas.}
+\begin{itemize}
+    \item \LaTeX permite ciertas fuentes especiales
+    \begin{itemize}
+        \item Para los conjuntos especiales
+        \begin{itemize}
+            \item \verb!$\mathbb{N,Z,R,C}$!: $\mathbb{N,Z,R,C}$
+        \end{itemize}\pause
+        \item Cursiva
+        \begin{itemize}
+            \item \verb!$\mathit{N,Z,R,C}$!: $\mathit{N,Z,R,C}$
+        \end{itemize}\pause
+    \item Negrita
+        \begin{itemize}
+            \item \verb!$\mathbf{N,Z,R,C}$!: $\mathbf{N,Z,R,C}$
+        \end{itemize}\pause
+    \item Caligráfica
+        \begin{itemize}
+            \item \verb!$\mathcal{N,Z,R,C}$!: $\mathcal{N,Z,R,C}$
+            \item \verb!$\mathscr{N,Z,R,C,L}$!: $\mathscr{N,Z,R,C,L}$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}    
+\end{frame}
+
+\section{Escritura de fórmulas y proposiciones complejas.}
+
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Ecuaciones de más de una línea.}
+%split
+\LaTeX permite partir las ecuaciones en múltiples lineas
+\begin{verbatim}
+\begin{multline}
+    p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
+    - 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+\end{verbatim}
+
+\begin{multline}
+p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
+- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Alinear ecuaciones.}
+%align y eqnarray
+    Hay dos formas de alinear ecuaciones:
+    \begin{itemize}
+    \begin{multicols}{2}
+    \setlength{\columnseprule}{1pt} 
+        \item Align:\\
+        
+\begin{verbatim}
+\begin{align}
+    y&=a(x+b)\\
+    &=ax+ab \nonumber
+\end{align}
+\end{verbatim}
+        \begin{align}
+                y&=a(x+b)\\
+                &=ax+ab \nonumber
+            \end{align}
+            \pause
+        \columnbreak
+        
+        \item Eqnarray:\\
+        
+\vspace*{-0.2cm}\begin{verbatim}
+\begin{eqnarray}
+    y&=&a(x+b)\\
+    &=&ax+ab
+\end{eqnarray}
+\end{verbatim}
+\vspace*{-0.7cm}\begin{eqnarray}
+                y&=&a(x+b)\\
+                &=&ax+ab
+            \end{eqnarray}
+    \end{multicols}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Funciones a trozos.}
+%cases
+\LaTeX permite escribir funciones a trozos de una manera sencilla usando el ambiente \verb!cases!:
+\begin{multicols}{2}
+\begin{verbatim}
+\begin{equation*}
+f(x)=\begin{cases}
+2 & \text{si } x<2 \\
+\ln x & \text{si } x\geq2
+\end{cases}
+\end{equation*}
+\end{verbatim}
+
+\begin{equation*}
+f(x)=\begin{cases}
+2 & \text{si } x<2 \\
+\ln x & \text{si } x\geq2
+\end{cases}
+\end{equation*}
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Estética de las ecuaciones}
+    \LaTeX permite ponerle elementos a las ecuaciones para que se vean mejor o simplemente se entiendan más fácilmente por el lector.
+    \begin{itemize}
+        \item Fracciones en diagonal: importar el paquete \verb!xfrac! \\
+        \verb!$\sfrac{2}{5}$!: $\sfrac{2}{5}$\pause
+        \item Overset: \\
+        \verb!$x_n\overset{n\to\infty}{\rightarrow}10$!: $x_n\overset{n\to \infty}{\rightarrow}10$
+        \item Underset:\\
+        \verb!$x_n\underset{n\to\infty}{\rightarrow}10$!: $x_n\underset{n\to \infty}{\rightarrow}10$\pause
+        \item Overbrace:\\
+        \small{\verb!$\overbrace{x_n\rightarrow 10}^{\text{esto es un limite}}$!}: $\overbrace{x_n\rightarrow 10}^{\text{esto es un limite}}$
+        \item Underbrace\\
+        \small{\verb!$\underbrace{x_n\rightarrow 10}_{\text{esto es un limite}}$!}: $\underbrace{x_n\rightarrow 10}_{\text{esto es un limite}}$
+    \end{itemize}
+\end{frame}
+
+\section{Ejercicio.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Ejercicio. (Actividad 1: nombre.tex y nombre.pdf)}
+Transcriba las siguientes ecuaciones: 
+\begin{enumerate}
+    \item $$\forall x,y,z \in V,\ (x+y)+z=x+(y+z)$$
+    \item $$\underset{u(t)}{\text{máx }}\int\limits e^{-\rho t}\left[P(x(t))-C(u(t))\right]\mathrm{d}t$$
+    \item $$u_C(t)=\begin{cases}2-\left(t_C-t_J\right)^2& \text{si } t_C<t_J\\ -\left(t_C-t_J\right)^2 &\text{de lo contrario}\end{cases}$$
+    \item $$A=\begin{pmatrix}
+    a_{11}&a_{12}&\dots& a_{1n}\\ 
+    a_{21}& a_{22}& \dots &a_{2n}\\ 
+    \vdots & \vdots & \ddots & \vdots\\
+    a_{n1}& a_{n2}& \dots & a_{nn}
+    \end{pmatrix}$$
+\end{enumerate}
+
+    
+\end{frame}
+
+
+
+
+{
+% all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=colorClase}
+    \begin{frame}[plain, noframenumbering]
+    \vfill
+    \begin{center}
+    \begin{Huge}
+        %\textcolor{white}{Gracias!}
+    \end{Huge}
+    \end{center}
+    \vfill
+     \end{frame}
+}
+
+\end{document}

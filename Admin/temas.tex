@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{multicol}
+
+%%%% Diseño de pagina
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{\baselineskip}
+\marginsize{1cm}{1cm}{0cm}{0.5cm} 
+\setlength{\parindent}{0pt}
+%\setlength{\columnseprule}{0.4pt}
+
+\pgfpagesdeclarelayout{boxed}
+{
+  \edef\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=1,%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {
+    border code=\pgfsetlinewidth{0.5pt}\pgfstroke,%
+    border shrink=\pgfpageoptionborder,%
+    resized width=.95\pgfphysicalwidth,%
+    resized height=.95\pgfphysicalheight,%
+    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  }%
+}
+
+%%%% Funciones
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+\newcommand{\plim}{\text{Plím }}
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\encabezado}{\vspace*{-2.5cm}
+\begin{minipage}{0.4\linewidth}
+\centering
+    \includegraphics[width=0.6\textwidth]{img/logo_econ.png}
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+\begin{center}
+\textbf{\large TALLER USOS DE \LaTeX\ }\\
+\textbf{\large ECON--1298 - Sección 1}\\
+\textbf{\large Julián Enrique Chitiva Bocanegra}\\
+\textbf{\href{mailto:je.chitiva10@uniandes.edu.co}{je.chitiva10@uniandes.edu.co}}\\
+\textbf{2019-2}\\
+\end{center}
+\end{minipage}
+}
+
+
+\pgfpagesuselayout{boxed}
+
+\begin{document}
+
+\begin{multicols}{2}
+ \setlength{\columnseprule}{0.8pt} 
+\begin{enumerate}[start=1,label={\bfseries \arabic*.},leftmargin=1cm]
+    \item \textbf{Introducción a \LaTeX\ . }
+        \begin{itemize}
+            \item ¿Qué es \LaTeX\ ? ¿Por qué \LaTeX\ ?
+            \item Instalación de \LaTeX\  
+            \item Compiladores de \LaTeX\  \textit{off-line} y \textit{on-line}  (\href{www.overleaf.com}{overleaf}).
+            \item Tipos de \textit{documentclass} estándar.
+            \item Estructura básica de un documento en \LaTeX
+        \end{itemize}
+    \item \textbf{Escritura matemática.}
+        \begin{itemize}
+            \item Símbolos matemáticos y letras griegas
+            \item Escritura de fórmulas y proposiciones
+            \item Ecuaciones de más de una linea
+            \item Alinear ecuaciones
+        \end{itemize}
+    \item \textbf{\textit{mini páginas} y Tablas.}
+        \begin{itemize}
+            \item Uso de minipages
+            \item Tabular
+            \item Table
+            \item Ajustar tablas al tamaño requerido.
+            \item Diseño de tablas booktabs, multirows, multicols
+        \end{itemize}
+    \item \textbf{Listas.} 
+        \begin{itemize}
+            \item Listas no numeradas
+            \item Listas numeradas
+            \item Cambiar diseño de listas (enumerate y enumitem).
+        \end{itemize}
+    \item \textbf{Diseño de página.}
+        \begin{itemize}
+            \item múltiples columnas (multicol)
+            \item Espaciado horizontal (hspace, hfill)
+            \item Espaciado vertical (vspace, vfill)
+            \item Páginas horizontales (reporte medición)
+            \item Numeración de páginas
+            \item Salto de página
+        \end{itemize}
+    \item \textbf{Gráficos e imágenes.}
+        \begin{itemize}
+            \item Insertar imagenes
+            \item Cambiar tamaño de imagenes
+            \item Paquetes subfigure y subcaption
+            \item Tikz
+            \begin{itemize}
+                \item Ecuaciones
+                \item Árboles
+                \item Redes
+            \end{itemize}
+            \item Colores (Tablas)
+            \item Gráficos con datos desde \LaTeX\ .
+        \end{itemize}
+    \item \textbf{Beamer y presentaciones.}
+        \begin{itemize}
+            \item Estructura básica
+            \item Formatos de presentación
+            \item Diseño de Encabezado y pie de página
+        \end{itemize}
+    \item \textbf{Diseño de exámenes y talleres.}
+        \begin{itemize}
+            \item Paquete exam
+            \item Escritura de soluciones
+            \item Tablas de calificación
+            \item Preguntas bono
+            \item Preguntas tituladas
+        \end{itemize}
+    \item \textbf{Conexión con otros softwares.}
+        \begin{itemize}
+            \item Stata 
+            \item R
+            \item Excel
+            \item (Pandoc) Word
+            \item (Pandoc) Html
+        \end{itemize}
+    \item \textbf{Manejo de referencias y bibliografía.}
+        \begin{itemize}
+            \item Archivos bibtex
+            \item Natbib
+            \item Estilos de citación
+        \end{itemize}
+    \item \textbf{Manejo de inputs.}
+        \begin{itemize}
+            \item Inputs desde \LaTeX
+            \item Inputs desde otros archivos
+        \end{itemize}
+    \item \textbf{Creación de paquetes.}
+        \begin{itemize}
+            \item Diseño
+            \item Programación de funciones
+            \item Publicación
+        \end{itemize}
+    \item \textbf{Journals de Economía.}
+        \begin{itemize}
+            \item American Economic Association
+            \item Econometrica
+            \item The Quarterly Journal of Economics
+            \item Otros
+        \end{itemize}
+    \item \textbf{Loops en \LaTeX\ .}
+        \begin{itemize}
+            \item Sobre el documento
+            \item Sobre gráficos
+        \end{itemize}
+    
+\end{enumerate}
+\end{multicols}
+
+
+
+
+\end{document}

@@ -1,0 +1,111 @@
+\documentclass[dvipsnames,xcolor=x11names]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{otros/pgf-pie}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{pgfplotstable}
+
+
+\PassOptionsToPackage{demo}{graphicx}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+\usetheme{Boadilla}
+
+\definecolor{colorClase}{RGB}{112,39,61}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX}
+\subtitle{Beamer}
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+\subject{}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{\texttt{\textbackslash only, \textbackslash uncover }}
+   \uncover<2->
+   {a partir de la diapositiva 2\\}
+   \uncover<3-4>
+   {desde la diapositiva 3 hasta la 4\\}
+   \invisible<3>{invisible solo en la diapositiva 3}\\
+   \uncover<3->{desde la diapositiva 3 hasta el final\\}
+   \only<1>{Solo en la primera diapositiva\\}
+   \alt<1,2,5>{Solo en las diapositivas 1,2 y 5\\}{Solo en las diapositivas 3 y 4}
+\end{frame}
+
+\begin{frame}{Tabla}
+    \begin{tabular}{|l|l|l|}\hline
+      \only<2>{\cellcolor{blue}}\color<2>{white}A & \only<3>{\cellcolor{blue}}\color<3>{white}B & \only<4>{\cellcolor{blue}}\color<4>{white}C  \\\hline
+      \only<5>{\cellcolor{blue}}\color<5>{white}D & \alt<2->{\alt<1,3,5,7,9>{\cellcolor{blue}}{\cellcolor{red}}}{}\color<2->{white}E & \only<7>{\cellcolor{blue}}\color<7>{white}F \\ \hline
+      \only<8>{\cellcolor{blue}}\color<8>{white}G & \only<9>{\cellcolor{blue}}\color<9>{white}H & \only<10>{\cellcolor{blue}}\color<10>{white}J\\ \hline
+   \end{tabular}
+\end{frame}
+\end{document}

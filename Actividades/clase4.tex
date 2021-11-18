@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{anysize}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newcounter{contadorPrueba}
+\renewcommand{\labelenumi}{\alph.}
+
+\begin{document}
+\begin{center}\textbf{Solución Actividad 3}\end{center}
+    
+
+\begin{enumerate}[start=1,
+label={\bfseries Tarea \Roman*.},
+leftmargin=1cm]
+\item a
+\item a 
+\item b
+\end{enumerate}
+
+\begin{enumerate}[start=1,
+label={\bfseries Tarea \roman*.}]
+\item a
+\item a
+\end{enumerate}
+
+\begin{enumerate}[start=5,
+label={\bfseries Tarea \Alph*.},
+leftmargin=1cm]
+\item a
+\item a
+\end{enumerate}
+
+
+\setcounter{contadorPrueba}{10}
+\begin{enumerate}[start=\value{contadorPrueba},
+label={\arabic*.}]
+\item a \stepcounter{contadorPrueba}
+\item a \stepcounter{contadorPrueba}
+\item a \stepcounter{contadorPrueba}
+\end{enumerate}
+
+\begin{enumerate}[start=\value{contadorPrueba},
+label={\alph*.} ]
+\item a \stepcounter{contadorPrueba}
+\item 
+\end{enumerate}
+\end{document}

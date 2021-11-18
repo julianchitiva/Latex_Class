@@ -1,0 +1,1332 @@
+\documentclass[dvipsnames,xcolor=x11names, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{otros/pgf-pie}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{pgfplotstable}
+
+
+\PassOptionsToPackage{demo}{graphicx}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+\usetheme{Boadilla}
+
+%\usecolortheme{crane}
+\definecolor{colorClase}{RGB}{229,120,104}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor \hspace*{1em}(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX \\ \small{Tikz - Parte \Rom{2}} \vspace*{-0.2cm}}
+
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+
+\subject{}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{Contenido.}
+  \tableofcontents
+  \footnote{Recuerden que el manual completo de Tikz lo pueden encontrar en \href{https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf}{\textcolor{colorClase}{este link}}.}
+\end{frame}
+
+\section{Tikz}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\subsection{Redes (nodos y enlaces).}
+%redes: tjA: clase5
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+
+\begin{frame}[fragile]{Redes (nodos y enlaces).}
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[-,dashed,
+auto,
+node distance=2cm,
+thick,
+main node/.style={circle,fill, draw,inner sep=2pt},
+sub node/.style={rectangle,
+fill=colorClase, draw=black, inner sep=5pt},
+every label/.style={font=\sffamily\tiny}]
+\node[main node,
+label={[label distance=-.01cm]90:{\textbf{1}}}] (1) {};
+\node[sub node,
+label={[label distance=-.1cm]225:{\textbf{2}}}] (2) [below left of=1] {};
+\node[main node,
+label={[label distance=-.1cm]315:{\textbf{3}}}] (3) [below right of=1] {};
+\path[every node/.style={font=\sffamily\small}]
+(1) edge [very thick] (2)
+    edge [very thick] (3)
+(2) edge [very thick] (1)
+(3) edge [very thick] (1);
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}\hfill\begin{minipage}{0.4\linewidth}
+\centering
+\vspace*{3cm}
+\begin{tikzpicture}[-,dashed,
+auto,
+node distance=2cm,
+thick,
+main node/.style={circle,fill, draw,inner sep=2pt},
+sub node/.style={rectangle,
+fill=colorClase, draw=black, inner sep=5pt},
+every label/.style={font=\sffamily\tiny}]
+\node[main node,
+label={[label distance=-.01cm]90:{\textbf{1}}}] (1) {};
+\node[sub node,
+label={[label distance=-.1cm]225:{\textbf{2}}}] (2) [below left of=1] {};
+\node[main node,
+label={[label distance=-.1cm]315:{\textbf{3}}}] (3) [below right of=1] {};
+\path[every node/.style={font=\sffamily\small}]
+(1) edge [very thick] (2)
+    edge [very thick] (3)
+(2) edge [very thick] (1)
+(3) edge [very thick] (1);
+\end{tikzpicture}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Redes (nodos y enlaces).}
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[-,dashed,
+auto,
+node distance=2cm,
+thick,
+main node/.style={circle,fill, draw,inner sep=2pt},
+sub node/.style={rectangle,
+fill=colorClase, draw=black, inner sep=5pt},
+every label/.style={font=\sffamily\tiny}]
+\node[main node,
+label={[label distance=-.01cm]90:{\textbf{1}}}] (1) {};
+\node[sub node,
+label={[label distance=-.1cm]225:{\textbf{2}}}] (2) [below left of=1] {};
+\node[sub node,
+label={[label distance=-.1cm]315:{\textbf{3}}}] (3) [below right of=1] {};
+\path[every node/.style={font=\sffamily\small}]
+(1) edge [very thick] (2)
+    edge [very thick] (3)
+(2) edge [very thick] (1)
+(3) edge [very thick] (1);
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}\hfill\begin{minipage}{0.4\linewidth}
+\centering
+\vspace*{3cm}
+\begin{tikzpicture}[-,dashed,
+auto,
+node distance=2cm,
+thick,
+main node/.style={circle,fill, draw,inner sep=2pt},
+sub node/.style={rectangle,
+fill=colorClase, draw=black, inner sep=5pt},
+every label/.style={font=\sffamily\tiny}]
+\node[main node,
+label={[label distance=-.01cm]90:{\textbf{1}}}] (1) {};
+\node[sub node,
+label={[label distance=-.1cm]225:{\textbf{2}}}] (2) [below left of=1] {};
+\node[sub node,
+label={[label distance=-.1cm]315:{\textbf{3}}}] (3) [below right of=1] {};
+\path[every node/.style={font=\sffamily\small}]
+(1) edge [very thick] (2)
+    edge [very thick] (3)
+(2) edge [very thick] (1)
+(3) edge [very thick] (1);
+\end{tikzpicture}
+\end{minipage}
+\end{frame}
+
+\subsection{Árboles.}
+%arboles de juegos tjA: clase6 clase8 clase 9
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+
+\begin{frame}[fragile]{Árboles.}
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}[-,auto,
+node distance=1.8cm, thick,
+sub node/.style={font=\sffamily\small\bfseries}]
+
+\node[sub node](A1){A};
+\node[sub node](A1_P)[right of=A1]{$(30,20)$};
+\node[sub node](B1)[below of=A1]{B };
+\node[sub node](B1_P)[right of=B1]{$(25,35)$};
+\node[sub node](A2)[below of=B1]{A };
+\node[sub node](A2_P)[right of=A2]{$(40,30)$ };
+\node[sub node](B2)[below of=A2]{B };
+\node[sub node](B2_P)[right of=B2]{$(35,45)$ };
+\node[sub node](NN)[below of=B2]{$(40,40)$ };
+
+\path[thick, every node/.style={font=\sffamily\small\bfseries}]
+(A1) edge node [left]{N}(B1)
+    edge[draw=black, decorate] node [above]{P}(A1_P)
+(B1) edge node [left]{N}(A2)
+    edge[draw=black, decorate] node [above]{P}(B1_P)
+(A2) edge node [left]{N}(B2)
+    edge[draw=black, decorate] node [above]{P}(A2_P)
+(B2) edge node [left]{N}(NN)
+    edge[draw=black, decorate] node [above]{P}(B2_P);
+\end{tikzpicture}
+\end{minipage}\pause
+\begin{minipage}{0.6\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[-,auto,
+node distance=1.8cm, thick,
+sub node/.style={font=\sffamily\small\bfseries}]
+
+\node[sub node](A1){A};
+\node[sub node](A1_P)[right of=A1]{$(30,20)$};
+\node[sub node](B1)[below of=A1]{B };
+\node[sub node](B1_P)[right of=B1]{$(25,35)$};
+\node[sub node](A2)[below of=B1]{A };
+\node[sub node](A2_P)[right of=A2]{$(40,30)$ };
+\node[sub node](B2)[below of=A2]{B };
+\node[sub node](B2_P)[right of=B2]{$(35,45)$ };
+\node[sub node](NN)[below of=B2]{$(40,40)$ };
+
+\path[thick, every node/.style={font=\sffamily\small\bfseries}]
+(A1) edge node [left]{N}(B1)
+    edge[draw=black, decorate] node [above]{P}(A1_P)
+(B1) edge node [left]{N}(A2)
+    edge[draw=black, decorate] node [above]{P}(B1_P)
+(A2) edge node [left]{N}(B2)
+    edge[draw=black, decorate] node [above]{P}(A2_P)
+(B2) edge node [left]{N}(NN)
+    edge[draw=black, decorate] node [above]{P}(B2_P);
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Árboles.}
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}[-,auto,
+node distance=1.8cm, thick,
+sub node/.style={font=\sffamily\small\bfseries}]
+
+\node[sub node](A1){A};
+\node[sub node](A1_P)[right of=A1]{$(30,20)$};
+\node[sub node](B1)[below of=A1]{B };
+\node[sub node](B1_P)[right of=B1]{$(25,35)$};
+\node[sub node](A2)[below of=B1]{A };
+\node[sub node](A2_P)[right of=A2]{$(40,30)$ };
+\node[sub node](B2)[below of=A2]{B };
+\node[sub node](B2_P)[right of=B2]{$(35,45)$ };
+\node[sub node](NN)[below of=B2]{$(40,40)$ };
+
+\path[thick, every node/.style={font=\sffamily\small\bfseries}]
+(A1) edge node [left]{N}(B1)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(A1_P)
+(B1) edge node [left]{N}(A2)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(B1_P)
+(A2) edge node [left]{N}(B2)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(A2_P)
+(B2) edge node [left]{N}(NN)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(B2_P);
+\end{tikzpicture}
+\end{minipage}\pause
+\begin{minipage}{0.6\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[-,auto,
+node distance=1.8cm, thick,
+sub node/.style={font=\sffamily\small\bfseries}]
+
+\node[sub node](A1){A};
+\node[sub node](A1_P)[right of=A1]{$(30,20)$};
+\node[sub node](B1)[below of=A1]{B };
+\node[sub node](B1_P)[right of=B1]{$(25,35)$};
+\node[sub node](A2)[below of=B1]{A };
+\node[sub node](A2_P)[right of=A2]{$(40,30)$ };
+\node[sub node](B2)[below of=A2]{B };
+\node[sub node](B2_P)[right of=B2]{$(35,45)$ };
+\node[sub node](NN)[below of=B2]{$(40,40)$ };
+
+\path[thick, every node/.style={font=\sffamily\small\bfseries}]
+(A1) edge node [left]{N}(B1)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(A1_P)
+(B1) edge node [left]{N}(A2)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(B1_P)
+(A2) edge node [left]{N}(B2)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(A2_P)
+(B2) edge node [left]{N}(NN)
+    edge[draw=black, decorate,
+    decoration={snake,amplitude=1.5}] node [above]{P}(B2_P);
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Árboles.}
+\centering
+\begin{minipage}{0.4\linewidth}
+\centering
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[sub node/.style={font=\sffamily\footnotesize\bfseries},
+level/.style={sibling distance=50mm/#1,
+font=\sffamily\small\bfseries }]
+\node (N) {1}
+child {
+    node  (L_1) {2}
+    child {
+    node (L_21) {1}
+    child {node (L_31) {$\alpha$}}
+    child {node (L_32) {$\beta$}}}
+    child {
+    node (L_22) {1}
+    child {node (L_33) {$\delta$}}
+    child {node (L_34) {$\epsilon$}}}
+    } 
+child {
+    node  (R_1) {2}
+    child {node (R_21) {$\gamma$}}
+    child {node (R_22) {$\rho$}}
+    };
+    
+\path (N) edge node [sub node, above left=0.1cm] {A}(L_1)
+edge  node [sub node, above right=0.1cm] {B}(R_1)
+(L_1) edge node [sub node, above left=0.1cm] {C}(L_21)
+edge  node [sub node, above right=0.1cm] {D}(L_22)
+(L_21) edge  node [sub node,left=0.1cm] {G}(L_31)
+edge node [sub node,right=0.1cm] {H}(L_32)
+edge [dashed] (L_22)
+(L_22) edge node [sub node, left=0.1cm] {G}(L_33)
+edge node [sub node, right=0.1cm] {H}(L_34)
+(R_1) edge node [sub node, above left=0.1cm] {E}(R_21)
+edge node [sub node, above right=0.1cm] {F}(R_22);
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\scalebox{0.7}{
+\hfill\begin{tikzpicture}[sub node/.style={font=\sffamily\footnotesize\bfseries},
+level/.style={sibling distance=50mm/#1, font=\sffamily\small\bfseries }]
+\node (N){$1$}
+child {node  (L_1) {2}
+child {node (L_21) {1}
+   child {node (L_31) {$\alpha$}}
+   child {node (L_32) {$\beta$}}}
+child {node (L_22) {1}
+   child {node (L_33) {$\delta$}}
+   child {node (L_34) {$\epsilon$}}}
+} child {node  (R_1) {2}
+child {node (R_21) {$\gamma$}}
+child {node (R_22) {$\rho$}}};
+\path (N) edge node [sub node, above left=0.1cm] {A}(L_1)
+edge  node [sub node, above right=0.1cm] {B}(R_1)
+(L_1) edge node [sub node, above left=0.1cm] {C}(L_21)
+edge  node [sub node, above right=0.1cm] {D}(L_22)
+(L_21) edge  node [sub node,left=0.1cm] {G}(L_31)
+edge node [sub node,right=0.1cm] {H}(L_32)
+edge [dashed] (L_22)
+(L_22) edge node [sub node, left=0.1cm] {G}(L_33)
+edge node [sub node, right=0.1cm] {H}(L_34)
+(R_1) edge node [sub node, above left=0.1cm] {E}(R_21)
+edge node [sub node, above right=0.1cm] {F}(R_22);
+\end{tikzpicture}}\vspace*{2cm}\vfill
+\end{minipage}
+\end{frame}
+
+\subsection{Ejes.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+%Fill
+%draw
+%filldraw
+\begin{frame}[fragile]{``Ejes''.}
+\begin{minipage}{0.45\linewidth}
+\scalebox{0.9}{
+\begin{tikzpicture}[domain=-1:4] 
+\draw[very thin,color=gray] (-1,-1) grid (4,4);
+\fill[fill=red!25, opacity=0.6] (0,0) rectangle (4,4);
+\filldraw[fill=orange!25,draw=yellow,
+thick, opacity=0.6] (0,0) -- (0,3)--
+(-1,3)-- (-1,-1) -- (0,0);
+\filldraw[fill=green!20,
+draw=green!50!black, opacity=0.6] 
+(0,0) -- (30mm,0mm) arc (0:30:30mm) -- cycle;
+\fill[gray!80, opacity=0.6] (0,2) 
+circle [x radius=1cm, y radius=5mm, rotate=30];
+\draw[red, dotted,
+thick] (0,0) .. controls (1,3)  .. (2.5,0.5);
+\draw (0,0) to [out=90,in=300] (3,2);
+\draw[-] (2,1)--(2,1) node [right]{$\sigma_1$};
+\draw[->, color=blue,
+ thick] (0,0)--(-1,-1);
+\draw[->,color=blue,
+thick](0,0) --(0,3) node [right]{$x_1$} ;
+\draw[->,color=blue,
+thick](0,0)--(3,0)node [above]{$x_2$} ;
+\end{tikzpicture}}
+\end{minipage}\pause
+\begin{minipage}{0.5\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}[domain=-1:4] 
+\draw[very thin,color=gray] (-1,-1) grid (4,4);
+\fill[fill=red!25, opacity=0.6] (0,0) rectangle (4,4);
+\filldraw[fill=orange!25,draw=yellow,
+thick, opacity=0.6] (0,0) -- (0,3)--
+(-1,3)-- (-1,-1) -- (0,0);
+\filldraw[fill=green!20,
+draw=green!50!black, opacity=0.6] 
+(0,0) -- (30mm,0mm) arc (0:30:30mm) -- cycle;
+\fill[gray!80, opacity=0.6] (0,2) 
+circle [x radius=1cm, y radius=5mm, rotate=30];
+\draw[red, dotted,
+thick] (0,0) .. controls (1,3)  .. (2.5,0.5);
+\draw (0,0) to [out=90,in=300] (3,2);
+\draw[-] (2,1)--(2,1) node [right]{$\sigma_1$};
+\draw[->, color=blue,
+ thick] (0,0)--(-1,-1);
+\draw[->,color=blue,
+thick](0,0) --(0,3) node [right]{$x_1$} ;
+\draw[->,color=blue,
+thick](0,0)--(3,0)node [above]{$x_2$} ;
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+%Graficos de mejores respuestas tjA: clase2  - clase4 
+%graficos de eps (patterns) tjA: clase4 clase9 clase13
+\begin{frame}[fragile]{Ejes.}
+\begin{minipage}{0.55\linewidth}
+\begin{tikzpicture}
+\begin{axis}[
+width=1.1\linewidth,
+axis x line=center,xlabel={$p$},
+axis y line=center,ylabel={$q$},
+xlabel style={below right},
+ylabel style={above left},
+ytick={0,0.5,1},
+yticklabels = {$0$,$\sfrac{1}{2}$,$1$},
+xtick={0,0.5,1},
+xticklabels = {$0$,$\sfrac{1}{2}$,$1$},
+ymin=-0.1,ymax=1.1,
+xmin=-0.1,xmax=1.1,
+legend style={at={(0.47,0.8)}},
+font=\sffamily\scriptsize]
+%legend pos = north]
+\addplot[color=red, very thick] table {
+0 0
+0 0.5
+1 0.5
+1 1
+};
+\addplot[color=blue, ultra thick] table {
+0 0
+0.5 0 
+0.5 1
+1 1
+};
+\addlegendentry{$BR_1(q)$}
+\addlegendentry{$BR_2(p)$}
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+%width=10cm,
+axis x line=center,xlabel={$p$},
+axis y line=center,ylabel={$q$},
+xlabel style={below right},
+ylabel style={above left},
+ytick={0,0.5,1},
+yticklabels = {$0$,$\sfrac{1}{2}$,$1$},
+xtick={0,0.5,1},
+xticklabels = {$0$,$\sfrac{1}{2}$,$1$},
+ymin=-0.1,ymax=1.1,
+xmin=-0.1,xmax=1.1,
+legend style={at={(0.46,0.8)}}]
+%legend pos = north]
+\addplot[color=red, very thick] table {
+0 0
+0 0.5
+1 0.5
+1 1
+};
+\addplot[color=blue, ultra thick] table {
+0 0
+0.5 0 
+0.5 1
+1 1
+};
+\addlegendentry{$BR_1(q)$}
+\addlegendentry{$BR_2(p)$}
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejes.}
+\begin{minipage}{0.4\linewidth}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 2,
+axis x line=center,
+axis y line=center,
+enlargelimits=true,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.55\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 2,
+axis x line=center,
+axis y line=center,
+enlargelimits=true,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejes.}
+\begin{minipage}{0.6\linewidth}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 1,
+axis x line=center,
+axis y line=center,
+enlargelimits=true,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.35\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 1,
+axis x line=center,
+axis y line=center,
+enlargelimits=true,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejes.}
+\begin{minipage}{0.6\linewidth}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 1,
+axis x line=center,
+axis y line=center,
+enlargelimits=false,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.35\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+width=9cm,
+unit vector ratio*=1 1,
+axis x line=center,
+axis y line=center,
+enlargelimits=false,
+xlabel={$u_1$},
+ylabel={$u_2$},
+xlabel style={right},
+ylabel style={right=0.2cm},
+ymin=0,ymax=8,
+xmin=0,xmax=8,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+
+\node at (0,0)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (2,2)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (5,5)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (1,6)[circle, scale=0.3,draw=black,fill=black]{};
+\node at (6,1)[circle, scale=0.3, draw=black,fill=black]{};
+\draw(0,0)--(1,6)--(5,5)--(6,1)--(0,0);
+\draw(10,2)--(2,2)--(2,10);
+\draw[fill=BrickRed,postaction={pattern=bricks,
+pattern color=white}](2,2)--(2,5.75)--(5,5)--(5.75,2)--(2,2);
+\node at (4,4)[circle, scale=0.3,draw=black,fill=black]{};
+\draw[<-, very thick,
+color=red](4.2,6)node[text width=1.5cm, right,
+color=black] {pagos del SPE con $\delta=1$}--(3,4) ;
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+%Funciones tjA: clase11
+\begin{frame}[fragile]{Ejes: funciones.}
+\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}
+\begin{axis}[
+width=1.3\linewidth,
+unit vector ratio*=1 1,
+enlargelimits=true,
+ymin=-5,ymax=5,
+xmin=-5,xmax=5,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+\draw[color=red] node[right] {$f(x) =x$}  plot (\x,\x); 
+\draw[color=blue, samples=50]   plot (\x,{sin(\x r)})    
+node[left] {$f(x) = \sin x$}; 
+\draw[color=orange] plot[domain=0:2] (\x,{0.5*exp(\x)}) 
+node[below left] {$f(x) =\frac{1}{2}\mathrm e^x$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\pause
+\begin{minipage}{0.5\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+width=\linewidth,
+unit vector ratio*=1 1,
+enlargelimits=true,
+ymin=-5,ymax=5,
+xmin=-5,xmax=5,
+yticklabel style={anchor=east},
+font=\sffamily\scriptsize]
+\draw[color=red] node[right] {$f(x) =x$}  plot (\x,\x); 
+\draw[color=blue, samples=50]   plot (\x,{sin(\x r)})   
+node[left] {$f(x) = \sin x$}; 
+\draw[color=orange] plot[domain=0:2] (\x,{0.5*exp(\x)}) 
+node[below left] {$f(x) =\frac{1}{2}\mathrm e^x$};
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejes: 3D.}
+\begin{minipage}{0.55\linewidth}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          view={30}{40},
+          axis x line=center,
+          axis y line=center,
+          axis z line=center,
+          xlabel={$x$},
+          ylabel={$y$},
+          zlabel={$z$},
+          xlabel style={below right},
+          ylabel style={below right},
+          ymin=-1,
+          ymax=3,
+          xmin=-1,
+          xmax=3,
+          zmin=-2,
+          zmax=16,
+          legend pos= outer north east]
+        \node at (1,1,-1) [circle, scale=0.3, draw=black,fill=black]{};
+        \node at (0,2,15)[circle, scale=0.3, draw=black,fill=black] {};
+        \node at (0,1,5) [circle, scale=0.3, draw=black,fill=black]{};
+        \filldraw[fill=blue!80,fill opacity=0.6,-, postaction={pattern=grid}](1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}   
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  view={30}{40},
+  axis x line=center,
+  axis y line=center,
+  axis z line=center,
+  xlabel={$x$},
+  ylabel={$y$},
+  zlabel={$z$},
+  xlabel style={below right},
+  ylabel style={below right},
+  ymin=-1,
+  ymax=3,
+  xmin=-1,
+  xmax=3,
+  zmin=-2,
+  zmax=16,
+  legend pos= outer north east]
+\node at (1,1,-1) [circle, scale=0.3,
+draw=black,fill=black]{};
+\node at (0,2,15)[circle, scale=0.3,
+draw=black,fill=black] {};
+\node at (0,1,5) [circle, scale=0.3,
+draw=black,fill=black]{};
+\filldraw[fill=blue!80,fill opacity=0.6
+,-, postaction={pattern=grid}]
+(1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}   
+\end{frame}
+
+\begin{frame}[fragile]{Ejes: 3D.}
+\begin{minipage}{0.55\linewidth}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          view={100}{50},
+          axis x line=center,
+          axis y line=center,
+          axis z line=center,
+          xlabel={$x$},
+          ylabel={$y$},
+          zlabel={$z$},
+          xlabel style={below right},
+          ylabel style={below right},
+          ymin=-1,
+          ymax=3,
+          xmin=-1,
+          xmax=3,
+          zmin=-2,
+          zmax=16,
+          legend pos= outer north east]
+        \node at (1,1,-1) [circle, scale=0.3, draw=black,fill=black]{};
+        \node at (0,2,15)[circle, scale=0.3, draw=black,fill=black] {};
+        \node at (0,1,5) [circle, scale=0.3, draw=black,fill=black]{};
+        \filldraw[fill=blue!80,fill opacity=0.6,-, postaction={pattern=grid}](1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}   
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  view={100}{50},
+  axis x line=center,
+  axis y line=center,
+  axis z line=center,
+  xlabel={$x$},
+  ylabel={$y$},
+  zlabel={$z$},
+  xlabel style={below right},
+  ylabel style={below right},
+  ymin=-1,
+  ymax=3,
+  xmin=-1,
+  xmax=3,
+  zmin=-2,
+  zmax=16,
+  legend pos= outer north east]
+\node at (1,1,-1) [circle, scale=0.3,
+draw=black,fill=black]{};
+\node at (0,2,15)[circle, scale=0.3,
+draw=black,fill=black] {};
+\node at (0,1,5) [circle, scale=0.3,
+draw=black,fill=black]{};
+\filldraw[fill=blue!80,fill opacity=0.6
+,-, postaction={pattern=grid}]
+(1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}   
+\end{frame}
+
+\begin{frame}[fragile]{Ejes: 3D - proyecciones.}
+\begin{minipage}{0.55\linewidth}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          view={0}{0},
+          axis x line=center,
+          axis y line=center,
+          axis z line=center,
+          xlabel={$x$},
+          ylabel={$y$},
+          zlabel={$z$},
+          xlabel style={below right},
+          ylabel style={below right},
+          ymin=-1,
+          ymax=3,
+          xmin=-1,
+          xmax=3,
+          zmin=-2,
+          zmax=16,
+          legend pos= outer north east]
+        \node at (1,1,-1) [circle, scale=0.3, draw=black,fill=black]{};
+        \node at (0,2,15)[circle, scale=0.3, draw=black,fill=black] {};
+        \node at (0,1,5) [circle, scale=0.3, draw=black,fill=black]{};
+        \filldraw[fill=blue!80,fill opacity=0.6,-, postaction={pattern=grid}](1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}   
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  view={0}{0},
+  axis x line=center,
+  axis y line=center,
+  axis z line=center,
+  xlabel={$x$},
+  ylabel={$y$},
+  zlabel={$z$},
+  xlabel style={below right},
+  ylabel style={below right},
+  ymin=-1,
+  ymax=3,
+  xmin=-1,
+  xmax=3,
+  zmin=-2,
+  zmax=16,
+  legend pos= outer north east]
+\node at (1,1,-1) [circle, scale=0.3,
+draw=black,fill=black]{};
+\node at (0,2,15)[circle, scale=0.3,
+draw=black,fill=black] {};
+\node at (0,1,5) [circle, scale=0.3,
+draw=black,fill=black]{};
+\filldraw[fill=blue!80,fill opacity=0.6
+,-, postaction={pattern=grid}]
+(1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}   
+\end{frame}
+
+\begin{frame}[fragile]{Ejes: 3D - proyecciones.}
+\begin{minipage}{0.55\linewidth}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          view={90}{90},
+          axis x line=center,
+          axis y line=center,
+          axis z line=center,
+          xlabel={$x$},
+          ylabel={$y$},
+          zlabel={$z$},
+          xlabel style={below right},
+          ylabel style={below right},
+          ymin=-1,
+          ymax=3,
+          xmin=-1,
+          xmax=3,
+          zmin=-2,
+          zmax=16,
+          legend pos= outer north east]
+        \node at (1,1,-1) [circle, scale=0.3, draw=black,fill=black]{};
+        \node at (0,2,15)[circle, scale=0.3, draw=black,fill=black] {};
+        \node at (0,1,5) [circle, scale=0.3, draw=black,fill=black]{};
+        \filldraw[fill=blue!80,fill opacity=0.6,-, postaction={pattern=grid}](1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}   
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  view={90}{90},
+  axis x line=center,
+  axis y line=center,
+  axis z line=center,
+  xlabel={$x$},
+  ylabel={$y$},
+  zlabel={$z$},
+  xlabel style={below right},
+  ylabel style={below right},
+  ymin=-1,
+  ymax=3,
+  xmin=-1,
+  xmax=3,
+  zmin=-2,
+  zmax=16,
+  legend pos= outer north east]
+\node at (1,1,-1) [circle, scale=0.3,
+draw=black,fill=black]{};
+\node at (0,2,15)[circle, scale=0.3,
+draw=black,fill=black] {};
+\node at (0,1,5) [circle, scale=0.3,
+draw=black,fill=black]{};
+\filldraw[fill=blue!80,fill opacity=0.6
+,-, postaction={pattern=grid}]
+(1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}   
+\end{frame}
+
+\begin{frame}[fragile]{Ejes: 3D - proyecciones.}
+\begin{minipage}{0.55\linewidth}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          view={90}{0},
+          axis x line=center,
+          axis y line=center,
+          axis z line=center,
+          xlabel={$x$},
+          ylabel={$y$},
+          zlabel={$z$},
+          xlabel style={below right},
+          ylabel style={below right},
+          ymin=-1,
+          ymax=3,
+          xmin=-1,
+          xmax=3,
+          zmin=-2,
+          zmax=16,
+          legend pos= outer north east]
+        \node at (1,1,-1) [circle, scale=0.3, draw=black,fill=black]{};
+        \node at (0,2,15)[circle, scale=0.3, draw=black,fill=black] {};
+        \node at (0,1,5) [circle, scale=0.3, draw=black,fill=black]{};
+        \filldraw[fill=blue!80,fill opacity=0.6,-, postaction={pattern=grid}](1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}   
+\begin{minipage}{0.4\linewidth}
+\begin{tiny}
+\begin{verbatim}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  view={90}{0},
+  axis x line=center,
+  axis y line=center,
+  axis z line=center,
+  xlabel={$x$},
+  ylabel={$y$},
+  zlabel={$z$},
+  xlabel style={below right},
+  ylabel style={below right},
+  ymin=-1,
+  ymax=3,
+  xmin=-1,
+  xmax=3,
+  zmin=-2,
+  zmax=16,
+  legend pos= outer north east]
+\node at (1,1,-1) [circle, scale=0.3,
+draw=black,fill=black]{};
+\node at (0,2,15)[circle, scale=0.3,
+draw=black,fill=black] {};
+\node at (0,1,5) [circle, scale=0.3,
+draw=black,fill=black]{};
+\filldraw[fill=blue!80,fill opacity=0.6
+,-, postaction={pattern=grid}]
+(1,1,-1)--(0,2,15)--(0,1,5)--(1,1,-1);
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{tiny}
+\end{minipage}   
+\end{frame}
+
+\subsection{Datos externos.}
+%datos: barras - google
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+
+\begin{frame}[fragile]{Datos externos.}
+\begin{center}
+\begin{scriptsize}
+\csvreader[head to column names,tabular=llll,
+table head=\toprule \bfseries Vertices & \bfseries Rounds & \bfseries RRS & \bfseries QRC \\\midrule, table foot=\bottomrule]{otros/datos.csv}{}{%
+\vertices  & \rounds & \RRS & \QRC}
+\end{scriptsize}
+\end{center}
+
+En el preámbulo hay que poner \verb!\usepackage{pgfplotstable}!.
+\end{frame}
+\begin{frame}[fragile]{Datos externos.}
+\pgfplotstableread[col sep=comma]{otros/datos.csv}{\datos}
+\begin{center}
+\vspace*{-2cm}
+\begin{tikzpicture}
+\begin{axis}[width=0.6\linewidth,
+ybar,bar width=2pt,
+font=\sffamily\scriptsize]
+\addplot table[x=rounds, y=RRS] {\datos};
+\addplot table[x=rounds, y=QRC] {\datos};    
+\end{axis}
+\end{tikzpicture}\pause
+\end{center}
+\vspace*{-1cm}
+\begin{tiny}
+\begin{verbatim}
+\pgfplotstableread[col sep=comma]{otros/datos.csv}{\datos}
+\begin{tikzpicture}
+\begin{axis}[width=0.5\linewidth,
+ybar,bar width=2pt,
+font=\sffamily\scriptsize]
+\addplot[fill= black] table[x=rounds, y=RRS] {\datos};
+\addplot table[x=rounds, y=QRC] {\datos};    
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\vspace*{-2cm}
+\end{tiny}
+
+\end{frame}
+
+\section{Actividad}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+\begin{frame}[fragile]{Ejercicio. (Actividad 6: nombre.tex y nombre.pdf)}
+En un documento \verb!article! desarrolle lo siguiente:
+
+\begin{minipage}{0.7\linewidth}
+    \begin{tikzpicture}[every node/.style={font=\sffamily\scriptsize}]
+        \begin{axis}[
+          unit vector ratio*=1 1 1,
+          width=9.5cm,
+          xlabel={$x$},
+          ylabel={$y$},
+          xlabel style={below right},
+          ylabel style={above left},
+          ymin=-1.5,
+          ymax=15.5,
+          xmin=-1.5,
+          xmax=15.5,
+          legend pos= outer north east]
+          
+        \fill [fill=gray!60, opacity=0.6] (5,8)--(8,8)--(8,6)--(6,4)--(5,4)--(5,8);
+        \fill[fill=blue!80, opacity=0.6] (5,4)--(6,4)--(0.5,-1.5)--(-0.5,-1.5)--(5,4);
+        \fill[fill=pink!50, opacity=0.6] (8,8)--(8,15.5)--(15.5,15.5)--(15.5,8)--(8,8);
+          %t_1=(1,3,9)=(2,8)
+          %northern
+        \addplot [-, thick] table {
+        2 8
+        2 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        2 8
+        16 8 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        2 8 
+        -2 4
+        };
+        \node at (2,8) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]-50:{{\color{green}$\psi(t_1)$}}}] {};
+        
+        %t_2=(2,7,6)=(5,4)
+          %northern
+        \addplot [-, thick] table {
+        5 4
+        5 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        5 4
+        16 4 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        5 4
+        -2 -3
+        };
+        \node at (5,4) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]170:{{\color{red}$\psi(t_2)$}}}] {};
+        
+        %t_3=(3,11,9)=(8,6)
+          %northern
+        \addplot [-, thick] table {
+        8 6
+        8 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        8 6
+        16 6 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        8 6
+        -4 -6
+        };
+        \node at (8,6) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]-45:{$\psi(t_3)$}}] {};
+        
+        \node at (6,4) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]125:{$p$}}] (p){};
+        
+        \node at (7,2) [circle, scale=0.3, draw=white,label={[label distance=-0.2cm]0:{$\begin{pmatrix}0&1&0\\0&0&1\\1&1&1\end{pmatrix}$}}](mp){};
+        
+        \path
+        (mp) edge[->,dashed,bend left,in=218, thick, magenta] (p);
+        \end{axis}
+        
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+\begin{scriptsize}
+    \begin{itemize}
+        \item Cuadros: \verb~pink!50~, \verb~blue!80~, \verb~gray!60~.
+        \item Letras: \verb~green~, \verb~red~.
+        \item Flechas: \verb~magenta~.
+        \item Opacidad: $0.6$.
+    \end{itemize}
+\end{scriptsize}
+\vfill
+\end{minipage}
+\end{frame}
+{
+% all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=colorClase}
+    \begin{frame}[plain, noframenumbering]
+    \vfill
+    \begin{center}
+    \begin{Huge}
+        %\textcolor{white}{Gracias!}
+    \end{Huge}
+    \end{center}
+    \vfill
+     \end{frame}
+}
+
+
+\end{document}

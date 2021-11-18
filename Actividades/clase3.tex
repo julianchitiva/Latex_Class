@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{anysize}
+
+\begin{document}
+\begin{center}\textbf{Solución Actividad 2}\end{center}
+% Esto es un comentario
+\listoftables
+
+\begin{minipage}{0.6\linewidth}
+Este es un texto que hay que escribir en el minipage de \verb!0.6\linewidth! de ancho.
+Esta es la activididad \# 1\% \$ \textbf{texto}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+    \begin{tabular}{*5{l}}\toprule
+             \multicolumn{5}{c}{Este es el encabezado de la tabla}\\
+             \multicolumn{2}{c}{Izquierda} &
+             \multicolumn{3}{c}{Derecha}\\\midrule
+             \multirow{3}{*}{Categoria} & 1 &
+             \multirow{3}{*}{Categoria} &
+             \multirow{2}{*}{1} & a \\\cmidrule{5-5}
+             & 2 & & & b \\\cmidrule{4-5}
+             & 3 & & \multicolumn{2}{c}{2}\\ \bottomrule 
+        \end{tabular}
+\end{minipage}
+
+\begin{minipage}{5cm}
+\resizebox{\linewidth}{!}{
+    \begin{tabular}{*2{c}*3{l}}\toprule
+             \multicolumn{5}{c}{Este es el encabezado de la tabla}\\
+             \multicolumn{2}{c}{Izquierda} & \multicolumn{3}{c}{Derecha}\\\midrule
+             \multirow{3}{*}{Categoria} & 1 & \multirow{3}{*}{Categoria} & 
+             \multirow{2}{*}{1} & a \\\cmidrule{5-5}
+             & 2 & & & b \\\cmidrule{4-5}
+             & 3 & & \multicolumn{2}{c}{2}\\ \bottomrule 
+        \end{tabular}
+        }
+\end{minipage}
+\begin{minipage}{12cm}
+\begin{tabular}{|*9{c|}}\hline
+    cond. \textbackslash red & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8)\\ \hline
+         Estable por Pares & SI & & & & SI & SI & SI & SI\\ \hline
+         Eficiencia & & & & & SI & SI & SI & \\ \hline
+         Eficiencia Pareto & & & & & SI & SI & SI & \\ \hline
+    \end{tabular}
+\end{minipage}
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{*9{l}}\toprule
+    cond. \textbackslash red & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8)\\ 
+         Estable por Pares & SI & & & & SI & SI & SI & SI\\ 
+         Eficiencia & & & & & SI & SI & SI & \\
+         Eficiencia Pareto & & & & & SI & SI & SI & \\ \bottomrule
+    \end{tabular}
+    \caption{Tabla con los parámetros de diseño}
+    \label{tab:my_label}
+\end{table}
+
+\end{document}

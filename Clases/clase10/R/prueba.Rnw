@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Este es un ejemplo de un \textit{.tex} desde R}
+\author{Julián Enrique Chitiva}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+<<echo=TRUE,results=tex>>=  
+a <- runif(10)
+b <- runif(10)
+c <- runif(10)
+@
+<<echo=FALSE,results=tex>>=  
+A <- data.frame(a,b,c)
+A$b[A$b>0] <- A$b[A$b>0]*10
+A$b[A$b<0] <- A$b[A$b<0]/10
+@
+
+<<echo=TRUE,results=verbatim>>=  
+A
+@
+
+
+\end{document}

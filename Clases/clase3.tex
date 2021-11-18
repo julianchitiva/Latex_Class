@@ -1,0 +1,989 @@
+\documentclass[dvipsnames,xcolor, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+%\usetikzlibrary{decorations.pathmorphing, patterns,shapes}
+%\usetikzlibrary{positioning}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.12}
+%\PassOptionsToPackage{demo}{graphicx}
+
+%\usepackage{array}
+
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+ \usetheme{Boadilla}
+
+%\usecolortheme{crane}
+\definecolor{colorClase}{rgb}{0,0.188,0.529}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor \hspace*{1em}(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX \\ \small{\textit{Minipage} y Tablas} \vspace*{-0.2cm}}
+
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+
+\subject{}
+\usepackage[figurename=]{caption}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents
+\end{multicols}
+\end{frame}
+
+\section{\itshape Minipages}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{\protect\textit{Minipages}}
+La idea de un \textit{minipage} es poder construir una página dentro de una página. Normalmente se usa para:
+\begin{itemize}
+    \item Poner dos tablas una al lado de otra.
+    \item Poner dos figuras una al lado de otra.
+    \item Poner texto al lado de una tabla o una figura.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sintaxis de un \protect\textit{minipage}}
+\begin{verbatim}
+\begin{minipage}[ajuste]{ancho del minipage}
+Texto ... \\
+Imágenes ... \\
+Tablas ... \\
+\end{minipage} 
+\end{verbatim}
+\begin{itemize}
+    \item Ajuste: puede ser \verb!c! centrado, \verb!t! arriba o \verb!b! abajo 
+    \item Ancho: puede ser absoluto o relativo
+    \begin{itemize}
+        \item Absoluto: \verb!6cm, 2in, 2pt, 3ex, 5em!
+        \item Relativo: representa una proporción de una medida predeterminada de \LaTeX\ como \verb!\textwidth!$=$\the\textwidth\  o \verb!\linewidth!$=$\the\linewidth
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Medidas en \LaTeX\ }
+\begin{tabular}{ccc}\hline
+    Unidad & Definición & Valor en pt \\ \hline
+    pt & un punto es $\pm$ 0.35 mm	& 1	\\
+    mm	& milímetro	& 2.84 \\
+    cm	& a centímetro	& 28.4 \\
+    in	& pulgada	& 72.27 \\
+    ex	& $\pm$ la altura de una `x' en la fuente actual &	- \\
+    em	& $\pm$ el ancho de una `M' en la fuente actual	& -
+\end{tabular}
+    
+    Tambien pueden definir sus longitudes como 
+    \vspace*{-0.8cm}\begin{verbatim}
+    \setlength{\mylength}{longitud}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+    \begin{minipage}{0.55\linewidth}
+     Es un ejemplo de dos \textit{minipage} pegados
+    \end{minipage}
+    \begin{minipage}{0.35\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos}
+\begin{verbatim}
+    \begin{minipage}{0.55\linewidth}
+     Es un ejemplo de dos \textit{minipage} pegados
+    \end{minipage}
+    \begin{minipage}{0.35\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+    \begin{minipage}{0.49\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+    \begin{minipage}{0.49\linewidth}
+    \textcolor{red}{\rule{\textwidth}{
+    \textwidth}}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos}
+\begin{verbatim}
+    \begin{minipage}{0.49\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+    \begin{minipage}{0.49\linewidth}
+    \textcolor{red}{\rule{\textwidth}{
+    \textwidth}}
+    \end{minipage}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+    \begin{minipage}{0.35\linewidth}
+     Es un ejemplo de tres \textit{minipage} pegados
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+    \textcolor{red}{\rule{\textwidth}{
+    \textwidth}}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos}
+\begin{verbatim}
+    \begin{minipage}{0.35\linewidth}
+     Es un ejemplo de tres \textit{minipage} pegados
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+    \textcolor{blue}{\rule{\textwidth}{\textwidth}}
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+    \textcolor{red}{\rule{\textwidth}{
+    \textwidth}}
+    \end{minipage}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos}
+    \begin{minipage}{0.45\linewidth}
+     Es un ejemplo de cuatro \textit{minipage}. Si se da\Enter entre el \verb!\end{minipage}! y el \verb!\begin{minipage}! se pondrá en la linea de abajo.
+    \end{minipage}
+    \begin{minipage}{0.4\linewidth}
+    \hfill\textcolor{blue}{\rule{0.8\textwidth}{0.6\textwidth}}
+    \end{minipage}\pause
+    
+    \begin{minipage}{0.25\linewidth}
+    \textcolor{orange}{\rule{\textwidth}{0.6\textwidth}}
+    \end{minipage}
+    \begin{minipage}{0.7\linewidth}
+    \textcolor{red}{\rule{\textwidth}{1cm}}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos}
+\begin{small}
+\begin{verbatim}
+\begin{minipage}{0.45\linewidth}
+    Es un ejemplo de cuatro \textit{minipage}. Si se da
+    \Enter entre el \end{minipage} y el \begin{minipage}
+    se pondrá en la linea de abajo.
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+    \hfill\textcolor{blue}{\rule{0.8\textwidth}{0.6\textwidth}}
+\end{minipage}
+
+\begin{minipage}{0.25\linewidth}
+    \textcolor{orange}{\rule{\textwidth}{0.6\textwidth}}
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+    \textcolor{red}{\rule{\textwidth}{1cm}}
+\end{minipage}
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\section{\itshape Tabular}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Estructura básica}
+\verb!Tabular! es el ambiente predeterminado de \LaTeX\ para crear tablas. 
+
+\begin{minipage}{0.57\linewidth}
+\begin{verbatim}
+\begin{tabular}{|c|| l |||r|}
+    \hline
+    Cent. & Izq. & Der. \\
+    d & e & f\\
+    \hline
+\end{tabular}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.1\linewidth}
+    $\rightarrow$
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+    \begin{tabular}[b]{|c|| l |||r|}
+    \hline
+    Cent. & Izq. & Der. \\
+    d & e & f\\
+    \hline
+\end{tabular}
+\end{minipage}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Estructura básica}
+Hay una forma ``rápida'' de crear una tabla con muchas columnas.
+
+\begin{minipage}{0.57\linewidth}
+\begin{verbatim}
+\begin{tabular}{|*3{c|}}
+    \hline
+    Cent. & Izq. & Der. \\
+    d & e & f\\
+    \hline
+\end{tabular}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.1\linewidth}
+    $\rightarrow$
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+    \begin{tabular}[b]{|*3{c|}}
+    \hline
+    Cent. & Izq. & Der. \\
+    d & e & f\\
+    \hline
+\end{tabular}
+\end{minipage}
+    
+\end{frame}
+
+\section{Table}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Estructura básica}
+\verb!Table! es el ambiente que permite referenciar y ponerle títulos a las tablas. 
+
+\begin{minipage}{0.57\linewidth}
+\begin{verbatim}
+\begin{table}[]
+    \centering
+    \begin{tabular}{c|c}
+        a & b \\
+        c & d
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.1\linewidth}
+    $\rightarrow$
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+    \begin{table}[]
+    \centering
+    \begin{tabular}{c|c}
+        a & b \\
+        c & d
+    \end{tabular}
+    \caption{Título de la tabla}
+    \label{tab:my_label}
+\end{table}
+\end{minipage}
+\begin{small}
+
+    En el Cuadro \ref{tab:my_label} podemos ver un ejemplo del ambiente \verb!Table!. 
+    En los corchetes se puede poner \vspace*{-0.5cm} \begin{verbatim}
+    h, h!, H, t, b
+\end{verbatim}
+    \vspace*{-0.5cm}(para poner \verb!H! se debe importar el paquete \verb!float!)
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]{Referencias de tablas.}
+\begin{itemize}
+    \item Si se quiere poner la lista de todas las tablas en el documento hay que usar el paquete \verb!\listoftables!
+    \item si se quiere cambiar los nombres de las tablas en el preámbulo hay que poner \verb!\renewcommand\spanishtablename{Otro nombre}!
+\end{itemize}
+\end{frame}
+
+\section{Diseño de tablas}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{frame}
+
+\subsection{Celdas de ancho fijo.}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Celdas de ancho fijo.}
+Si el texto dentro de las celdas es muy largo, \LaTeX\ sigue escribiendo hasta salirse de la hoja.
+
+\begin{small}
+\begin{tabular}{|c|l|r|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{small}\pause
+
+\begin{minipage}{0.5\linewidth}
+\begin{scriptsize}
+\begin{verbatim}
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{verbatim}
+\end{scriptsize}
+\end{minipage}
+\begin{minipage}{0.05\linewidth}
+    $\rightarrow$
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{scriptsize}
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+    \end{scriptsize}
+\end{minipage}
+\end{frame}
+
+\subsection{Tablas de ancho fijo.}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Tablas de ancho fijo.}
+    Si queremos tablas de ancho fijo tenemos que usar el paquete \verb!tabu!. La sintaxis es la siguiente:\\\pause
+\begin{verbatim}
+\begin{tabu} to 0.8\textwidth { | X[l] | X[c] | X[r] | }
+\hline
+aaaaa & bbbbb & ccccc \\
+\hline
+ddddd  & eeeee  & fffff  \\
+\hline
+\end{tabu}
+\end{verbatim}\pause
+
+    \begin{tabu} to 0.8\textwidth { | X[l] | X[c] | X[r] | }
+    \hline
+    aaaaa & bbbbb & ccccc \\
+    \hline
+    ddddd  & eeeee  & fffff  \\
+    \hline
+    \end{tabu}
+\end{frame}
+
+\begin{frame}[fragile]{Tablas de ancho fijo.}
+    Si queremos tablas de ancho fijo tenemos que usar el paquete \verb!tabu!. \\
+\begin{verbatim}
+\begin{tabu} to 0.4\textwidth { | X[l] | X[c] | X[r] | }
+\hline
+aaaaa & bbbbb & ccccc \\
+\hline
+ddddd  & eeeee  & fffff  \\
+\hline
+\end{tabu}
+\end{verbatim}\pause
+
+    \begin{tabu} to 0.4\textwidth { | X[l] | X[c] | X[r] | }
+    \hline
+    aaaaa & bbbbb & ccccc \\
+    \hline
+    ddddd  & eeeee  & fffff  \\
+    \hline
+    \end{tabu}
+\end{frame}
+
+\subsection{Escalar tablas.}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas.}
+Hay dos maneras de escalar tablas:
+\begin{enumerate}
+    \item \verb!\scalebox{Escala}{Contenido}!: Permite escalar todo el contenido proporcionalmente
+    \item \verb!\resizebox{Ancho}{Alto}{Contenido}!: Permite escalar el ancho y alto por separado, también permite mantener la escala.
+\end{enumerate}
+
+Para usar estas funciones hay que importar el paquete \verb!graphicx!
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas: scalebox.}
+\begin{center}
+\footnotesize
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{minipage}{0.6\linewidth}
+\footnotesize
+\begin{verbatim}
+\scalebox{0.7}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{verbatim}
+\end{minipage}\pause
+\begin{minipage}{0.39\linewidth}
+\footnotesize
+\centering
+\scalebox{0.7}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas: scalebox.}
+\begin{center}
+\footnotesize
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{minipage}{0.6\linewidth}
+\footnotesize
+\begin{verbatim}
+\scalebox{0.4}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{verbatim}
+\end{minipage}\pause
+\begin{minipage}{0.39\linewidth}
+\footnotesize
+\centering
+\scalebox{0.4}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas: resizebox.}
+\begin{minipage}{0.6\linewidth}
+\footnotesize
+\begin{verbatim}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{verbatim}
+\end{minipage}\pause
+
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas: resizebox.}
+\begin{minipage}{0.6\linewidth}
+\footnotesize
+\begin{verbatim}
+\resizebox{!}{1cm}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{verbatim}
+\end{minipage}\pause
+
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\resizebox{!}{1cm}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Escalar tablas: resizebox.}
+\begin{minipage}{0.6\linewidth}
+\footnotesize
+\begin{verbatim}
+\resizebox{5cm}{1cm}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{verbatim}
+\end{minipage}\pause
+
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\footnotesize
+\centering
+\resizebox{5cm}{1cm}{
+\begin{tabular}{|p{1cm}|m{1cm}|b{1cm}|}
+\hline
+Alinea con la linea de arriba & 
+Alinea con la linea de la mitad &
+Alinea con la linea de abajo \\
+\hline
+\end{tabular}
+}
+\end{minipage}
+\end{frame}
+
+\subsection{Tablas de más de una página.}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Tablas de más de una página.}
+    Para poder escribir tablas de más de una página hay que cargar el paquete \verb!longtable!. La sintaxis es la siguiente:\\\pause
+\begin{multicols}{2}
+\begin{tiny}
+\begin{verbatim}
+\begin{longtable}[c]{| c | c |}
+ \caption{Nombre de la tabla.\label{etiqueta}}\\
+ %Diseño del encabezado
+ \hline
+ \multicolumn{2}{| c |}{Comienzo de la tabla}\\
+ \hline
+ Col 1 & Col 2\\
+ \hline
+ \endfirsthead % Hasta aqui encabezado pag. 1
+ 
+ \hline
+ \multicolumn{2}{|c|}{Continuación Tabla
+ \ref{etiqueta}}\\
+ \hline
+  Col 1 & Col 2\\
+ \hline
+ \endhead %Hasta aqui encabezado pag. secundarias
+ 
+ \hline
+ \endfoot %Hasta aqui parte de abajo pag. secundarias
+  
+ \hline
+ \multicolumn{2}{| c |}{Fin de la tabla.}\\
+ \hline\hline
+ \endlastfoot %Hasta aqui parte de abajo pag. final
+ 
+ %Contenido
+ Muchas lineas & como esta\\
+ Muchas lineas & como esta\\
+ Muchas lineas & como esta\\
+ Muchas lineas & como esta\\
+ ...
+ Muchas lineas & como esta\\
+ \end{longtable}
+ \end{verbatim}
+ \end{tiny}
+ \end{multicols}
+\end{frame}
+
+\subsection{Combinar celdas.}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\subsubsection*{\itshape multicols.}
+
+\begin{frame}[fragile]{\itshape multicols.}
+    La sintaxis es la siguiente:\\~\\
+    \verb!\multicolumn{numColumnas}{Diseño}{Contenido}! \pause \\~\\
+    \begin{minipage}{0.6\linewidth}
+    \begin{small}
+\begin{verbatim}
+\begin{tabular}{|c|c|c|}\hline
+     a & \multicolumn{2}{c}{b}\\ \hline
+     c & d & e\\ \hline
+     f & g & h\\ \hline
+\end{tabular}
+\end{verbatim}
+    \end{small}
+    \end{minipage}\pause
+    \begin{minipage}{0.3\linewidth}
+    \centering
+\begin{tabular}{|c|c|c|}\hline
+     a & \multicolumn{2}{c}{b}  \\ \hline
+     c & d & e\\ \hline
+     f & g & h\\ \hline
+\end{tabular}
+    \end{minipage}
+    
+\end{frame}
+
+\subsubsection*{\itshape multirows.}
+
+\begin{frame}[fragile]{\itshape multirows.}
+    Para poder escribir combinar filas hay que cargar el paquete \verb!multirow!. La sintaxis es la siguiente:\\~\\ \verb!\multirow[opciones]{numFilas}{Ancho}{Contenido}!\pause\\~\\
+    
+    
+\begin{minipage}{0.6\linewidth}
+\begin{verbatim}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{verbatim}    
+\end{minipage}\pause
+\begin{minipage}{0.3\linewidth}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape multirows.}
+\begin{minipage}{0.6\linewidth}
+\begin{verbatim}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow[t]{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{verbatim}    
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow[t]{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape multirows.}
+\begin{minipage}{0.6\linewidth}
+\begin{verbatim}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow[b]{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{verbatim}    
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+a & b & c \\
+\hline
+\multirow[b]{3}{*}{d} & e & f \\ 
+& g & h \\ 
+& i & j \\ 
+\hline
+\end{tabular}
+\end{minipage}
+\end{frame}
+
+\subsection{Booktabs}
+\begin{frame}{Contenido.}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{frame}
+
+\begin{frame}{Reglas para el diseño de tablas\footnote{``Chicago Manual of Style''}.}
+
+    \begin{enumerate}
+        \item Evitar lineas verticales.
+        \item Evitar encerrar todas las celdas.
+        \item Evitar dobles lineas horizontales.
+        \item Dejar espacio suficiente entre filas.
+        \item Preferiblemente alinear a la izquierda.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Booktabs}
+    El paquete \verb!booktabs! permite diseñar mejor las lineas de las tablas. Contiene los siguientes tipos de lineas:
+    \begin{enumerate}
+        \item \verb!\toprule[ancho]!: linea superior de la tabla.
+        \item \verb!\midrule[ancho]!: lineas intermedias de la tabla.
+        \item \verb!\cmidrule[ancho](trim){colInicial-colFinal}!: lineas intermedias que no van completas.
+        \item \verb!\bottomrule[ancho]!: linea inferior de la tabla.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Booktabs}
+\begin{center}
+    \begin{tabular}{*4{c}}\toprule
+     a & b & c & d  \\
+     \cmidrule[2pt](r{1mm}){1-2}
+     \cmidrule(l{1mm}){3-4}
+     e & f & g & h  \\ \midrule
+     i & j & k & l \\\bottomrule[1.5pt]
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+\begin{tabular}{*4{c}}\toprule
+     a & b & c & d  \\
+     \cmidrule[2pt](r{1mm}){1-2}
+     \cmidrule(l{1mm}){3-4}
+     e & f & g & h  \\ \midrule
+     i & j & k & l \\\bottomrule[1.5pt]
+\end{tabular}
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ejercicio. (Actividad 2: nombre.tex y nombre.pdf)}
+En un documento \verb!article! desarrolle lo siguiente:
+\vspace*{-0.7cm}\begin{enumerate}
+    \item Incluya la lista de tablas (etiquete todas las tablas).
+    \item En un minipage de \verb!0.6\linewidth! escriba un texto.
+    \item En un minipage junto al anterior ponga la siguiente tabla:
+    \begin{center}
+    \tiny
+        \begin{tabular}{*2{c}*3{l}}\toprule
+             \multicolumn{5}{c}{Este es el encabezado de la tabla}\\
+             \multicolumn{2}{c}{Izquierda} & \multicolumn{3}{c}{Derecha}\\\midrule
+             \multirow{3}{*}{Categoria} & 1 & \multirow{3}{*}{Categoria} & \multirow{2}{*}{1} & a \\\cmidrule{5-5}
+             & 2 & & & b \\\cmidrule{4-5}
+             & 3 & & \multicolumn{2}{c}{2}\\ \bottomrule 
+        \end{tabular}
+    \end{center}
+    \item En un minipage de \verb!5cm! escale la tabla anterior para que se ajuste al minipage.
+    \item En un minipage del ancho restante escriba la siguiente tabla: 
+    \begin{center}
+    \tiny
+    \begin{tabular}{|*9{c|}}\hline
+    cond. \textbackslash red & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8)\\ \hline
+         Estable por Pares & SI & & & & SI & SI & SI & SI\\ \hline
+         Eficiencia & & & & & SI & SI & SI & \\ \hline
+         Eficiencia Pareto & & & & & SI & SI & SI & \\ \hline
+    \end{tabular}
+    \end{center}
+    \item Rediseñe la tabla anterior con base en las reglas que mencionamos.
+\end{enumerate}
+\end{frame}
+{
+% all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=colorClase}
+    \begin{frame}[plain, noframenumbering]
+    \vfill
+    \begin{center}
+    \begin{Huge}
+        %\textcolor{white}{Gracias!}
+    \end{Huge}
+    \end{center}
+    \vfill
+     \end{frame}
+}
+
+
+\end{document}

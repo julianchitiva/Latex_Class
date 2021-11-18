@@ -1,0 +1,657 @@
+
+\documentclass[dvipsnames,xcolor, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+\usepackage{wrapfig}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+ \usetheme{Boadilla}
+
+%\usecolortheme{crane}
+\definecolor{colorClase}{rgb}{0,0.55,0.082}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor \hspace*{1em}(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX \\ \small{Diseño de páginas} \vspace*{-0.2cm}}
+
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+
+\subject{}
+\usepackage[figurename=]{caption}
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenido.}
+\begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\section{Múltiples columnas.}
+\begin{frame}{Contenido.}
+\begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\subsection{Columnas balanceadas.}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Columnas balanceadas.}
+Para poder tener múltiples columnas balanceadas\footnote{Ambas columnas tienen la misma cantidad de lineas.} en un documento es necesario usar el paquete \verb!multicol!. La forma de usarlo es muy sencillo:
+\begin{verbatim}
+    \begin{multicols}{numColumnas}
+    Contenido a partir en numColumnas columnas.
+    \end{multicols}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Columnas balanceadas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{2}
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\vfill\pause
+\begin{footnotesize}
+    \begin{multicols}{2}
+    Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+    \end{multicols}
+\end{footnotesize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Columnas balanceadas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{3}
+Contenido a partir en tres columnas. Este es un ejemplo de texto para
+partir en tres columnas. Este es un ejemplo de texto para partir en tres
+columnas. Este es un ejemplo de texto para partir en tres columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\vfill\pause
+\begin{footnotesize}
+    \begin{multicols}{3}
+    Contenido a partir en tres columnas. Este es un ejemplo de
+    texto para partir en tres columnas. Este es un ejemplo de
+    texto para partir en tres columnas. Este es un ejemplo de
+    texto para partir en tres columnas. 
+    \end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Columnas balanceadas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{4}
+Contenido a partir en cuatro columnas. Este es un ejemplo de
+texto para partir en cuatro columnas. Este es un ejemplo de 
+texto para partir en cuatro columnas. Este es un ejemplo de
+texto para partir en cuatro columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\vfill\pause
+\begin{footnotesize}
+    \begin{multicols}{4}
+    Contenido a partir en cuatro columnas.  Este es un ejemplo de texto para
+partir en cuatro columnas. Este es un ejemplo de texto para partir en cuatro
+columnas. Este es un ejemplo de texto para partir en cuatro columnas. 
+    \end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\subsection{Separación de las columnas.}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Separación de las columnas.}
+Para poder cambiar el espacio de separación de las columnas predeterminado, en el preámbulo hay que poner:
+
+\verb!\setlength{\columnsep}{3cm}!
+
+\end{frame}
+
+{
+\setlength{\columnsep}{3cm}
+\begin{frame}[fragile]{Separación de las columnas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{2}
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\vfill\pause
+\begin{footnotesize}
+    \begin{multicols}{2}
+    Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+    \end{multicols}
+\end{footnotesize}
+\end{frame}
+}
+
+\subsection{Linea de separación entre columnas.}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Línea de separación entre columnas.}
+Para poder fijar una línea de separación entre las columnas de manera predeterminado, en el preámbulo hay que poner:
+
+\verb!\setlength{\columnseprule}{1mm}!
+
+\end{frame}
+
+{
+\setlength{\columnseprule}{1mm}
+\begin{frame}[fragile]{Línea de separación entre columnas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{2}
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\vfill\pause
+\begin{footnotesize}
+    \begin{multicols}{2}
+    Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+    \end{multicols}
+\end{footnotesize}
+\end{frame}
+}
+
+\subsection{Encabezado de las columnas.}
+
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Encabezado de las columnas.}
+Para poder poner un encabezado a las columnas (saltarse la orden de multiples columnas) hay que poner el texto que queremos en una sola columna entre corchetes \verb![  ]!.\pause 
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols}{2}
+[
+Este es un encabezado para las columnas de este multicols
+]
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+\end{multicols}
+\end{verbatim}
+\end{footnotesize}
+\pause
+\begin{footnotesize}
+\begin{multicols}{2}
+[
+Este es un encabezado para las columnas de este multicols
+]
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto para partir en dos
+columnas. Este es un ejemplo de texto para partir en dos columnas. 
+    \end{multicols}
+\end{footnotesize}
+
+\end{frame}
+
+\subsection{Columnas desbalanceadas.}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Columnas desbalanceadas.}
+Para poder tener múltiples columnas desbalanceadas\footnote{Las columnas pueden tener diferente cantidad de lineas.} la sintaxis es la siguiente:
+\begin{verbatim}
+    \begin{multicols*}{numColumnas}
+    Contenido a partir en numColumnas columnas.
+    \end{multicols*}
+\end{verbatim}
+En este caso se puede forzar el salto de columna mediante 
+
+\verb!\columnbreak!
+
+Las demás características de las columnas balanceadas aplican para este caso.
+\end{frame}
+
+\begin{frame}[fragile]{Columnas desbalanceadas: ejemplo.}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{multicols*}{2}
+Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto 
+\columnbreak 
+para partir en dos columnas. Este es un ejemplo de 
+texto para partir en dos columnas. 
+\end{multicols*}
+\end{verbatim}
+\end{footnotesize}
+\pause
+\vspace*{0.6cm}
+\begin{footnotesize}
+    \begin{multicols*}{2}
+    Contenido a partir en dos columnas.  Este es un ejemplo de texto para
+partir en dos columnas. Este es un ejemplo de texto 
+\columnbreak 
+para partir en dos columnas. Este es un ejemplo de 
+texto para partir en dos columnas. 
+    \end{multicols*}
+\end{footnotesize}
+
+\end{frame}
+
+\subsection{Tablas dentro de las columnas.}
+\begin{frame}[fragile]{Tablas dentro de las columnas.}
+Para poder insertar tablas dentro de las columnas, en el encabezado hay que poner \verb!\usepackage{wrapfig}!.
+
+\begin{scriptsize}
+\begin{verbatim}
+\begin{multicols}{2}
+Contenido a partir en dos columnas. 
+  
+\begin{wraptable}{l}{0.5\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+A & B \\
+\hline
+C & D \\
+\hline
+\end{tabular}
+\end{wraptable}
+
+Este es un ejemplo de texto para partir en dos columnas.Este es un ejemplo de
+texto para partir en dos columnas.Este es un ejemplo de texto para partir en
+dos columnas. Este es un ejemplo de texto para partir en dos columnas. Este es
+un ejemplo de texto para partir en dos columnas.
+\end{multicols}
+\end{verbatim}
+\end{scriptsize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Tablas dentro de las columnas.}
+
+\begin{multicols}{2}
+Contenido a partir en dos columnas. 
+  
+\begin{wraptable}{l}{0.5\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+A & B \\
+\hline
+C & D \\
+\hline
+\end{tabular}
+\end{wraptable}
+
+Este es un ejemplo de texto para
+partir en dos columnas.Este es un ejemplo de texto para
+partir en dos columnas.Este es un ejemplo de texto para
+partir en dos columnas.Este es un ejemplo de texto para
+partir en dos columnas.
+Este es un ejemplo de texto para
+partir en dos columnas.
+\end{multicols}
+
+\end{frame}
+
+\section{Espaciado horizontal.}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\subsection{hspace}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape hspace}
+    Cuando queremos insertar espacios horizontales usamos la función \verb!\hspace{distancia}!
+\begin{verbatim}
+Este \hspace{2cm} es un ejemplo de hspace.
+\end{verbatim}
+Este \hspace{2cm} es un ejemplo de hspace.
+
+
+A veces toca usar \verb!\hspace*{distancia}! para insertar obligatoriamente el espacio.
+
+\end{frame}
+
+
+\subsection{hfill}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape hfill}
+La función \verb!\hfill! sirve para llenar el espacio horizontal
+    
+\begin{verbatim}
+Este es un \hfill ejemplo de hfill.    
+\end{verbatim}
+
+Este es un \hfill ejemplo de hfill.    \pause
+
+\begin{verbatim}
+Este es otro \hfill ejemplo de \hfill hfill.    
+\end{verbatim}
+
+Este es otro \hfill ejemplo de \hfill hfill.    
+
+\end{frame}
+
+\section{Espaciado vertical.}
+\begin{frame}{Contenido.}
+  \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\subsection{vspace}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape vspace}
+    Cuando queremos insertar espacios horizontales usamos la función \verb!\vspace{distancia}!
+\begin{multicols*}{2}
+\begin{verbatim}
+Este 
+
+\vspace{0.5cm}
+
+es un ejemplo de vspace.
+\end{verbatim}
+\columnbreak
+Este 
+
+\vspace{0.5cm} 
+
+es un ejemplo de vspace.
+\end{multicols*}
+
+
+A veces toca usar \verb!\vspace*{distancia}! para insertar obligatoriamente el espacio.
+
+\end{frame}
+
+\subsection{vfill}
+\begin{frame}{Contenido.}
+ \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsubsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{\itshape vfill}
+La función \verb!\vfill! sirve para llenar el espacio horizontal
+    
+
+\begin{verbatim}
+Este es un \vfill ejemplo de vfill.    
+\end{verbatim}
+
+Este es un \vfill  ejemplo de vfill.        
+
+\end{frame}
+
+\section{Numeración de páginas.}
+\begin{frame}{Contenido.}
+  \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Numeración de páginas.}
+Para cambiar la numeración de páginas hay que usar el comando \verb!\pagenumbering{num_style}! en el preámbulo\footnote{El cambio de estilo en la numeración se puede hacer en cualquier parte del documento.}.\pause
+
+Los estilos de numeración disponibles en \LaTeX\ son:
+\begin{itemize}
+    \item \verb!arabic!: números arabicos.
+    \item \verb!roman!: números romanos en minúscula.
+    \item \verb!Roman!: números romanos en mayúscula.
+    \item \verb!alph!: letras del alfabeto en minúscula.
+    \item \verb!Alph!: letras del alfabeto en mayúscula.
+\end{itemize}\pause
+
+Recuerden que también pueden usar los contadores. \verb!\setcounter{page}{3}!
+
+\end{frame}
+
+\section{Salto de página.}
+\begin{frame}{Contenido.}
+  \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Salto de página.}
+    Hay 3 formas de insertar saltos de línea:
+    \begin{itemize}
+        \item \verb!\clearpage!: inserta una nueva página y si tiene tablas o imagenes sin poner las pone antes de insertar una nueva página.
+        \item \verb!\newpage!: inserta una nueva página dejando como espacio en blanco el espacio restante de la página.
+        \item \verb!pagebreak!: inserta una nueva página y distribuye el espacio en blanco restante entre los elementos de la página. 
+    \end{itemize}
+\end{frame}
+
+\section{Páginas horizontales.}
+\begin{frame}{Contenido.}
+  \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}[fragile]{Páginas horizontales.}
+    Para poder insertar páginas horizontales es necesario:
+    \begin{enumerate}
+        \item En el preámbulo: \verb!\usepackage{pdflscape}!
+        \item La parte del documento que se quiere en horizontal:
+\begin{verbatim}
+    \begin{landscape}
+    Contenido de la página horizontal.
+    \end{landscape}
+\end{verbatim}
+    \end{enumerate}
+\end{frame}
+ 
+\section{Actividad} 
+\begin{frame}{Contenido.}
+  \begin{footnotesize}
+\vspace*{-1cm}
+\begin{multicols}{2}
+  \tableofcontents[currentsection]
+\end{multicols}
+\end{footnotesize}
+\end{frame}
+\begin{frame}[fragile]{Ejercicio. (Actividad 4: nombre.tex y nombre.pdf)}
+En un documento \verb!article! desarrolle lo siguiente:
+
+\begin{enumerate}
+    \item En la primera página: inserte cuatro tablas (las que quiera) una en cada esquina (pista: use \verb!\hfill! y \verb!\vfill!)
+    \item En la segunda página: Inserte tres columnas de texto (El que quiera) balanceadas, con lineas de separación de 2pt de grosor y espacio de separación de 4cm. 
+    \item En la tercera página: cambie la numeración a números romanos y que esa sea la página 50.
+\end{enumerate}
+
+\end{frame}
+{
+% all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=colorClase}
+    \begin{frame}[plain, noframenumbering]
+    \vfill
+    \begin{center}
+    \begin{Huge}
+        %\textcolor{white}{Gracias!}
+    \end{Huge}
+    \end{center}
+    \vfill
+     \end{frame}
+}
+            
+\end{document}

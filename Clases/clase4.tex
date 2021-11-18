@@ -1,0 +1,492 @@
+\documentclass[dvipsnames,xcolor, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+ \usetheme{Boadilla}
+
+%\usecolortheme{crane}
+\definecolor{colorClase}{rgb}{0.682,0.055,0.0208}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor \hspace*{1em}(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX \\ \small{Listas} \vspace*{-0.2cm}}
+
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+\date{\today}
+
+\subject{}
+\usepackage[figurename=]{caption}
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenido.}
+  \tableofcontents
+\end{frame}
+
+\section{Listas no ordenadas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Listas no ordenadas.}
+    En \LaTeX\ las listas son muy (muy) fáciles de crear. Para crear listas no ordenadas usamos el ambiente \verb!itemize!.
+    
+    \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+\begin{itemize}
+    \item Un elemento.
+    \item Otro elemento.
+\end{itemize}    
+\end{verbatim}
+    \end{minipage}\pause
+    \begin{minipage}{0.5\linewidth}
+    \begin{itemize}
+    \item Un elemento.
+    \item Otro elemento.
+\end{itemize}    
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Características de listas no ordenadas.}
+    \begin{itemize}
+        \item Cada entrada de una lista no ordenada es indicada (por \textit{default}) con un punto negro ``$\bullet$'', llamado bullet.
+        \item El texto en cada una de las entradas puede ser de cualquier longitud. 
+    \end{itemize}
+\end{frame}
+
+\section{Listas ordenadas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Listas ordenadas.}
+La forma de escribir estas listas es igual a las no ordenadas, sin embargo, se debe usar el ambiente \verb!enumerate! \\~\\ \pause
+\begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+\begin{enumerate}
+    \item Un elemento.
+    \item Otro elemento.
+\end{enumerate}    
+\end{verbatim}
+    \end{minipage}\pause
+    \begin{minipage}{0.5\linewidth}
+    \begin{enumerate}
+    \item Un elemento.
+    \item Otro elemento.
+\end{enumerate}    
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Características de listas ordenadas.}
+    \begin{enumerate}
+        \item Las etiquetas consisten de números que siguen un orden secuencial.
+        \item Los números empiezan con 1. cada vez que se llama el ambiente \verb!enumerate!.
+    \end{enumerate}
+\end{frame}
+
+\section{Listas anidadas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Listas anidadas.}
+Una lista anidada es una lista que contiene sublistas. La forma de escribir estas listas es igual, dependiendo si queremos anidar listas ordenadas, no ordenadas o mezcladas. 
+\end{frame}
+
+\begin{frame}[fragile]{Listas anidadas: \itshape itemize.}
+\begin{minipage}{0.55\linewidth}
+\begin{verbatim}
+\begin{itemize}
+    \item Nivel 1.
+    \begin{itemize}
+        \item Nivel 2.
+        \begin{itemize}
+            \item Nivel 3.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}    
+\end{verbatim}
+    \end{minipage}\pause
+    \begin{minipage}{0.45\linewidth}
+\begin{itemize}
+\item Nivel 1.
+\begin{itemize}
+    \item Nivel 2.
+    \begin{itemize}
+        \item Nivel 3.
+    \end{itemize}
+\end{itemize}
+\end{itemize}    
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Listas anidadas: \itshape enumerate.}
+\begin{minipage}{0.55\linewidth}
+\begin{verbatim}
+\begin{enumerate}
+    \item Nivel 1.
+    \begin{enumerate}
+        \item Nivel 2.
+        \begin{enumerate}
+            \item Nivel 3.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}    
+\end{verbatim}
+    \end{minipage}\pause
+    \begin{minipage}{0.45\linewidth}
+\begin{enumerate}
+    \item Nivel 1.
+    \begin{enumerate}
+        \item Nivel 2.
+        \begin{enumerate}
+            \item Nivel 3.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}   
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Listas anidadas: mixta.}
+\begin{minipage}{0.55\linewidth}
+\begin{verbatim}
+\begin{enumerate}
+    \item Nivel 1.
+    \begin{itemize}
+        \item Nivel 2.
+        \begin{enumerate}
+            \item Nivel 3.
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}    
+\end{verbatim}
+    \end{minipage}\pause
+    \begin{minipage}{0.45\linewidth}
+\begin{enumerate}
+    \item Nivel 1.
+    \begin{itemize}
+        \item Nivel 2.
+        \begin{enumerate}
+            \item Nivel 3.
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}    
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Características de las listas anidadas.}
+En \verb!documentclass! diferentes a \verb!beamer!:
+
+\begin{itemize}
+    \item Las listas anidadas permiten hasta 4 niveles de profundidad, en \verb!beamer! solo permite 3. 
+    \item Cuando se están anidando listas ordenadas (\verb!enumerate!), las etiquetas de cada nivel son distintas automáticamente.
+\end{itemize}
+\end{frame}
+
+\section{Diseño de listas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+\subsection{Cambio de etiquetas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+\begin{frame}[fragile]{Cambio de etiquetas.}
+Hay tres formas de cambiar las etiquetas de las listas ordenadas y no ordenadas. 
+\begin{enumerate}
+    \item Cambiando las etiquetas dependiendo del nivel de profundidad.
+    \item Definiendo las etiquetas para cada entrada manualmente.
+    \item Creando etiquetas personalizadas para cada \verb!itemize! o \verb!enumerate!. 
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Etiquetas dependiendo del nivel de profundidad: \itshape itemize.}
+En el preámbulo escribimos:
+\begin{verbatim}
+\renewcommand{\labelitemi}{$\blacksquare$}
+\renewcommand{\labelitemii}{$\square$}
+\renewcommand{\labelitemiii}{\textquestiondown}    
+\renewcommand{\labelitemiv}{\#}    
+\end{verbatim}
+
+\begin{itemize}
+    \item[$\blacksquare$] Nivel 1.
+    \begin{itemize}
+        \item[$\square$] Nivel 2.
+        \begin{itemize}
+            \item[\textquestiondown] Nivel 3.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}   
+\end{frame}
+
+\begin{frame}[fragile]{Etiquetas dependiendo del nivel de profundidad: \itshape enumerate.}
+En el preámbulo escribimos:
+\begin{verbatim}
+\usepackage{enumerate}
+\renewcommand{\labelenumi}{\Roman{enumi}.}
+\renewcommand{\labelenumii}{\alph{enumii}.}
+\renewcommand{\labelenumiii}{\roman{enumiii}.}    
+\renewcommand{\labelenumiv}{\Alph{enumiv}.}
+\end{verbatim}
+
+\begin{enumerate}
+    \item[\Rom{1}.] Nivel 1.
+    \begin{enumerate}
+        \item[a.] Nivel 2.
+        \begin{enumerate}
+            \item[\rom{1}.] Nivel 3.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Definiendo etiquetas manualmente.}
+\begin{verbatim}
+\begin{itemize}
+    \item[$\cdots$] Nivel 1.
+    \begin{enumerate}
+        \item[$\sim$] Nivel 2.
+        \begin{itemize}
+            \item[$\alpha$] Nivel 3.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}   
+\end{verbatim}
+
+\begin{itemize}
+    \item[$\cdots$] Nivel 1.
+    \begin{enumerate}
+        \item[$\sim$] Nivel 2.
+        \begin{itemize}
+            \item[$\alpha$] Nivel 3.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}   
+\end{frame}
+
+\begin{frame}[fragile]{Etiquetas personalizadas}
+Para poder personalizar etiquetas tenemos que importar el paquete \verb!enumitem!.
+\begin{verbatim}
+\begin{enumerate}[start=1,
+    label={\large\bfseries Módulo\ \arabic*:}]
+\item Nivel 1
+\item Nivel 1.1
+\end{enumerate}
+\end{verbatim}
+\begin{enumerate}
+\item[\large\bfseries Módulo 1:] Nivel 1
+\item[\large\bfseries Módulo 2:] Nivel 1.1
+\end{enumerate}
+
+Las formas de personalizar una lista son muchisimas, recomiendo este \href{http://mirrors.ucr.ac.cr/CTAN/macros/latex/contrib/enumitem/enumitem.pdf}{\textcolor{colorClase}{documento}} si quieren profundizar.
+
+\end{frame}
+    
+\subsection{Identación.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+\begin{frame}[fragile]{Etiquetas personalizadas}
+Para poder personalizar etiquetas tenemos que importar el paquete \verb!enumitem!.
+\begin{verbatim}
+\begin{enumerate}[start=1,
+label={\large\bfseries Módulo\ \arabic*:},
+leftmargin=2cm]
+\item Nivel 1
+\item Nivel 1.1
+\end{enumerate}
+\end{verbatim}
+\begin{enumerate}[leftmargin=2cm]
+\item[\large\bfseries Módulo 1:] Nivel 1
+\item[\large\bfseries Módulo 2:] Nivel 1.1
+\end{enumerate}
+\end{frame}
+
+\subsection{Contadores.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsubsection]
+\end{frame}
+\begin{frame}[fragile]{Contadores}
+\begin{verbatim}
+\begin{enumerate}
+\setcounter{enumi}{3}
+    \item Este es el primer elemento de la lista.
+\end{enumerate}    
+\end{verbatim}
+    \begin{enumerate}
+    \setcounter{enumi}{3}
+        \item Este es el primer elemento de la lista.
+    \end{enumerate}
+Los contadores se pueden tomar valores entre $-2^{31}$ y $2^{31}-1$
+\end{frame}
+
+\begin{frame}[fragile]{Contadores.}
+Tambien podemos crear nuestros propios contadores. La sintaxis es:
+\begin{small}
+\begin{verbatim}
+\newcounter{contadorPrueba}
+\newcounter{contadorPrueba}[otroContador]
+\end{verbatim}
+\end{small}
+Por \textit{default} arranca en 0. Para definir que arranque en otro valor usamos el comando de antes:
+\begin{small}
+\begin{verbatim}
+\setcounter{contadorPrueba}{valor}
+\end{verbatim}
+\end{small}
+
+\end{frame}
+
+\begin{frame}[fragile]{Contadores.}
+
+Cada vez que lo usemos tenemos que incrementar manualmente mediante:
+\begin{small}
+\begin{verbatim}
+\stepcounter{contadorPrueba}
+\end{verbatim}
+\end{small}
+
+Podemos obtener el valor del contador mediante 
+\begin{small}
+\begin{verbatim}
+\value{contadorPrueba}
+\end{verbatim}
+\end{small}
+
+Para profundizar en contadores sugiero revisar las páginas web \href{https://en.wikibooks.org/wiki/LaTeX/Counters}{\textcolor{colorClase}{1}} y \href{https://www.overleaf.com/learn/latex/Counters}{\textcolor{colorClase}{2}}.
+\end{frame}
+
+\begin{frame}[fragile]{Uso de contadores}
+
+La forma más fácil de usar los contadores es mediante el comando
+\begin{small}
+\begin{verbatim}
+    \renewcommand{\labelenumi}{contadorPrueba}
+\end{verbatim}
+\end{small}
+
+O usando el valor de \verb!contadorPrueba! en las demás funciones de \verb!enumerate!
+    
+\end{frame}
+
+
+
+\section{Ejercicio}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+\begin{frame}[fragile]{Ejercicio. (Actividad 3: nombre.tex y nombre.pdf)}
+En un documento \verb!article! desarrolle lo siguiente:
+
+\begin{enumerate}
+    \item Cree una lista ordenada con una etiqueta de la forma ``\textbf{Tarea} \Rom{1}.'', ``\textbf{Tarea} \Rom{2}.'', $\dots$
+    
+    \item Cree una lista ordenada con una etiqueta de la forma ``\textbf{\textit{Tarea}} \rom{1}.'', ``\textbf{\textit{Tarea}} \rom{2}.'', $\dots$
+    
+    \item Cree una lista ordenada con una etiqueta de la forma ``\textit{\textbf{Tarea}} \textbf{E}.'', ``\textbf{\textit{Tarea}} \textbf{F}.'',$\dots$
+    
+    \item Cree un contador que arranque en 10
+    \item Cree una lista ordenada, con etiquetas numéricas, que arranque en este contador e increméntelo con cada item.
+    \item Cree otra lista ordenada, con etiquetas en letras minúsculas, que arranque en este contador e increméntelo con cada item.
+\end{enumerate}
+
+\end{frame}
+{
+% all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=colorClase}
+    \begin{frame}[plain, noframenumbering]
+    \vfill
+    \begin{center}
+    \begin{Huge}
+        %\textcolor{white}{Gracias!}
+    \end{Huge}
+    \end{center}
+    \vfill
+     \end{frame}
+}
+
+
+\end{document}

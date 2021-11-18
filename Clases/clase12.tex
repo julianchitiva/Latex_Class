@@ -1,0 +1,178 @@
+\documentclass[dvipsnames,xcolor=x11names, handout]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[all]{xy}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{tabu}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{keystroke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{color, soul}
+\usepackage{otros/pgf-pie}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{pgfplotstable}
+\usepackage{natbib}
+
+
+\PassOptionsToPackage{demo}{graphicx}
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+
+\newcommand*{\rom}[1]{\expandafter\romannumeral #1}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand{\Importante}[2]{{\color{#1}#2}}
+\newcommand{\importante}[2]{{\color{#1}\underline{#2}}}
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+\usetheme{Boadilla}
+\definecolor{colorClase}{RGB}{2,70,56}
+\usecolortheme[named=colorClase]{structure}
+\usepackage{natbib}
+
+
+\theoremstyle{plain}
+  \newtheorem{teorema}{Teorema}
+  \newtheorem{proposicion}{Proposición}
+  \newtheorem{corolario}{Corolario}
+  \newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+  \newtheorem{definicion}{Definici\'on}
+  \newtheorem{ejemplo}{Ejemplo}
+  
+  
+\setbeamertemplate{caption}[numbered]
+ 
+\title{Taller usos de \LaTeX}
+\subtitle{Manejo de proyectos ``grandes''.}
+\setbeamersize{text margin left=25pt,text margin right=25pt}
+
+\author[Julián Chitiva Bocanegra]{Julián Enrique Chitiva Bocanegra}
+\institute[Uniandes] 
+{Universidad de los Andes\\ Facultad de Economía}
+\titlegraphic{\includegraphics[width=0.8cm]{img/uniandes_logo.png}
+}
+
+% \pgfdeclareimage[height=.8cm]{university-logo}{img/uniandes_logo.png}
+% \logo{\pgfuseimage{university-logo}}
+
+\date{\today}
+\subject{}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenido.}
+  \tableofcontents%[hideallsubsections]%, currentsection]
+\end{frame}
+\section{Manejo de \itshape inputs.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Manejo de \itshape inputs \normalfont ``.tex''.}
+\begin{itemize}
+    \item La forma de incluir archivos ``.tex'' dentro de otro archivo ``.tex'' es mediante el comando \verb!\input{archivoSecundario}! o \verb!\include{archivoSecundario}!
+    \begin{itemize}
+    \item \verb!\input! es como si escribieramos el contenido del ``.tex'' en el nuevo
+    \item \verb!\include! es igual que \verb!\input! pero insertando un \verb!\clearpage! y crea un archivo ``.aux'' para cada uno de los archivos incluidos.
+    \end{itemize}
+    \item \verb!\include! permite incluir o excluir solo algunos archivos usando \verb!\includeonly{<lista*>}! y \verb!\excludeonly{<lista*>}!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Manejo de \itshape inputs \normalfont ``.pdf''.}
+\begin{itemize}
+    \item Toca importar el paquete \verb!pdfpages!
+    \begin{itemize}[<+->]
+        \item Para insertar todo el pdf \verb!\includepdf[pages=-]{archivo.pdf}!
+        \item Para insertar solo páginas 1 y 2 del pdf \verb!\includepdf[pages={1,2}]{archivo.pdf}!
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Creación de paquetes.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+\begin{frame}[fragile]{Creación de paquetes.}
+Crear paquetes es muy sencillo. \pause Solo es necesario poner 
+    
+\begin{verbatim}
+\ProvidesPackage{nombrePaquete}
+\end{verbatim}
+
+En la primera linea de un archivo ``.sty''.\pause
+
+Después se pone todo el código correspondiente a las funciones y paquetes que necesitemos para el desarrollo de nuestro paquete (Yo lo uso solo para poder poner todo el preámbulo en otro archivo y que todo sea mas ordenado). 
+\end{frame}
+
+\begin{frame}[fragile]{Programación de funciones.}
+\begin{itemize}[<+->]
+    \item Hemos visto que el comando \verb!\renewcommand! sirve para sobrescribir la programación de un comando o valor predeterminado en \LaTeX\ .
+    \item Para crear nuevos comandos el comando es \verb!\newcommmand! Este nos permite definir el número de parámetros necesarios para la función y sus valores por defecto.\pause
+    \begin{ejemplo}
+    \begin{enumerate}[<+->]
+    \item \verb!\newcommand*{\rom}[1]{\expandafter\romannumeral #1}!
+    \item \scriptsize{\verb!\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}!}
+    \item \verb!\newcommand{\Importante}[2][red]{{\color{#1}#2}}!
+    \end{enumerate}
+    \end{ejemplo}
+\end{itemize}
+\end{frame}
+
+\section{Ventajas y desventajas.}
+\begin{frame}{Contenido.}
+  \tableofcontents[currentsection]
+\end{frame}
+{\renewcommand{\columnseprule}{1pt}
+\begin{frame}{Ventajas.}
+\begin{multicols}{2}
+\begin{enumerate}
+\item ORDEN! 
+\item Hay archivos más cortos y es más fácil buscar errores. 
+\end{enumerate}
+    
+\columnbreak
+    
+\begin{enumerate}
+\item Pueden ser muchos archivos y buscar las cosas puede ser más difícil. 
+\end{enumerate}
+\end{multicols}
+
+%\hlc{blue}{hola}
+{\sethlcolor{blue} \hl{hola}}
+\end{frame}}
+\end{document}

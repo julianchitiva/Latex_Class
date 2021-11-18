@@ -1,0 +1,90 @@
+\documentclass[12pt, addpoints, answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[all]{xy}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage{anysize}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[dvipsnames, x11names]{xcolor}
+\usepackage{tikz}
+\usepackage{color, soul}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes, arrows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\PassOptionsToPackage{demo}{graphicx}
+
+
+
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+\definecolor{colorClase}{rgb}{0.82,0.565,0}
+
+\pagestyle{headandfoot}
+\firstpageheader{Julián Chitiva}{}{\today}
+\runningheader{Julián Chitiva}
+              {}
+              {\today}
+\firstpagefooter{}{Pagina \thepage\ de \numpages}{}
+\runningfooter{}{Pagina \thepage\ de \numpages}{}
+
+\pointpoints{punto}{puntos}
+\hpword{Puntos:}
+\vpword{Puntos}
+\htword{Total}
+\vtword{Total:}
+\vsword{Resultado}
+
+\begin{document}
+
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        Instrucciones básicas para el desarrollo del examen}}}
+\end{center}
+\vspace{0.1in}
+\begin{minipage}{0.5\linewidth}
+\makebox[0.9\textwidth]{Nombre:\enspace\hrulefill}\\
+\vspace{0.2in}
+\makebox[0.9\textwidth]{Código:\enspace\hrulefill}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\fbox{\fbox{\parbox{0.9\linewidth}{\centering
+        Este examen tiene \numquestions\ preguntas,
+para un total de \numpoints\
+puntos y \numbonuspoints\ puntos bono.}}}
+\end{minipage}
+
+\gradetable[v][questions]
+\begin{questions}
+\question[10] Esta es la pregunta cuya solución es un \verb!\rule!
+\begin{solution}
+\textcolor{red}{\rule{5cm}{5cm}}
+\end{solution}
+\question[20] Esta es la pregunta con \verb!choices! y si no sabe es la \textbf{C}
+\begin{choices}
+\choice Esta no es
+\choice Esta tampoco es
+\CorrectChoice Esta si es
+\choice Es la anterior
+\choice \textquestiondown Esta seguro?
+\end{choices}
+\question[30] Esta es la pregunta con \verb!checkboxes! y si no sabe es la tercera
+\begin{checkboxes}
+\choice Esta no es
+\choice Esta tampoco es
+\CorrectChoice Esta si es
+\choice Es la anterior
+\choice \textquestiondown Esta seguro?
+\end{checkboxes}
+\question[40] El color favorito de Julián es \fillin[Morado].
+\bonusquestion[5] \textquestiondown Que mejoraría del taller de \LaTeX\ ?
+\begin{solution}
+Me gustaría saber lo que mejoraría
+\end{solution} 
+{\sethlcolor{pink} \hl{hola}} 
+\end{questions}
+\end{document}

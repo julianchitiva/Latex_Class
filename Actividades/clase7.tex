@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[all]{xy}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage{anysize}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[dvipsnames, x11names]{xcolor}
+\usepackage{otros/pgf-pie}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing, patterns,shapes, arrows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\PassOptionsToPackage{demo}{graphicx}
+
+
+
+
+\renewcommand{\baselinestretch}{1}
+\setlength{\parskip}{\baselineskip}
+
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+\definecolor{colorClase}{rgb}{0.82,0.565,0}
+
+
+
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={font=\sffamily\scriptsize}]
+        \begin{axis}[
+          unit vector ratio*=1 1 1,
+          width=9.5cm,
+          xlabel={$x$},
+          ylabel={$y$},
+          xlabel style={below right},
+          ylabel style={above left},
+          ymin=-1.5,
+          ymax=15.5,
+          xmin=-1.5,
+          xmax=15.5,
+          legend pos= outer north east]
+          
+        \fill [fill=gray!60, opacity=0.6] (5,8)--(8,8)--(8,6)--(6,4)--(5,4)--(5,8);
+        \fill[fill=blue!80, opacity=0.6] (5,4)--(6,4)--(0.5,-1.5)--(-0.5,-1.5)--(5,4);
+        \fill[fill=pink!50, opacity=0.6] (8,8)--(8,15.5)--(15.5,15.5)--(15.5,8)--(8,8);
+          %t_1=(1,3,9)=(2,8)
+          %northern
+        \addplot [-, thick] table {
+        2 8
+        2 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        2 8
+        16 8 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        2 8 
+        -2 4
+        };
+        \node at (2,8) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]-50:{{\color{green}$\psi(t_1)$}}}] {};
+        
+        %t_2=(2,7,6)=(5,4)
+          %northern
+        \addplot [-, thick] table {
+        5 4
+        5 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        5 4
+        16 4 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        5 4
+        -2 -3
+        };
+        \node at (5,4) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]170:{{\color{red}$\psi(t_2)$}}}] {};
+        
+        %t_3=(3,11,9)=(8,6)
+          %northern
+        \addplot [-, thick] table {
+        8 6
+        8 16
+        };
+        %eastern
+        \addplot [-, thick] table {
+        8 6
+        16 6 
+        };
+        %southwestern 
+        \addplot [-, thick] table {
+        8 6
+        -4 -6
+        };
+        \node at (8,6) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]-45:{$\psi(t_3)$}}] {};
+        
+        \node at (6,4) [circle, scale=0.3, draw=black,fill=black,label={[label distance=-0.1cm]125:{$p$}}] (p){};
+        
+        \node at (7,2) [circle, scale=0.3, draw=white,label={[label distance=-0.2cm]0:{$\begin{pmatrix}0&1&0\\0&0&1\\1&1&1\end{pmatrix}$}}](mp){};
+        
+        \path
+        (mp) edge[->,dashed,bend left,in=218, thick, magenta] (p);
+        \end{axis}
+        
+    \end{tikzpicture}
+\end{document}
