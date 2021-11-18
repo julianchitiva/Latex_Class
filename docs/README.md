@@ -1,7 +1,7 @@
-# Latex workshop
+# Latex workshop. Contents of the course in Spanish.
 ###	Faculty of Economics - Universidad de los Andes
 
-## Instructor: Julián Chitiva
+## Instructor: Julián Chitiva.
 
 ## [Instructions for downloading the class files.](./download_file.md)
 
